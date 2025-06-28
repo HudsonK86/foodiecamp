@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuisines - FoodieCamp</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisine</a>
+                    <a href="events.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Login</a>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700" title="Toggle menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-30 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-blue-600">Cuisine</a>
+            <a href="events.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <a href="login.html" class="block w-full text-left px-3 py-2 text-blue-600 font-medium">Login</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Breadcrumb -->
+        <div class="bg-primary-blue py-4">
+            <div class="max-w-7xl mx-auto px-4">
+                <nav class="text-sm text-gray-600">
+                    <a href="index.html" class="hover:text-blue-600">Home</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-gray-800">Cuisines</span>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Cuisine Grid -->
+        <div class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <h1 class="text-4xl font-bold text-center text-gray-800 mb-12">Explore World Cuisines</h1>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Chinese -->
+                    <div class="bg-white rounded-xl shadow-lg card-hover transition-all duration-300">
+                        <img src="https://images.unsplash.com/photo-1617093700631-8b3d9b4e5e6f?w=400&h=250&fit=crop" alt="Chinese Cuisine" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Chinese</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="ml-2 text-gray-600">4.5 (48 recipes)</span>
+                            </div>
+                            <a href="cuisine.html" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                                Learn Recipes
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Malay -->
+                    <div class="bg-white rounded-xl shadow-lg card-hover transition-all duration-300">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03246963d17a?w=400&h=250&fit=crop" alt="Malay Cuisine" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Malay</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="ml-2 text-gray-600">4.8 (32 recipes)</span>
+                            </div>
+                            <a href="cuisine.html" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                                Learn Recipes
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Indian -->
+                    <div class="bg-white rounded-xl shadow-lg card-hover transition-all duration-300">
+                        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=250&fit=crop" alt="Indian Cuisine" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Indian</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="ml-2 text-gray-600">4.2 (56 recipes)</span>
+                            </div>
+                            <a href="cuisine.html" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                                Learn Recipes
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Western -->
+                    <div class="bg-white rounded-xl shadow-lg card-hover transition-all duration-300">
+                        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400&h=250&fit=crop" alt="Western Cuisine" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Western</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="ml-2 text-gray-600">4.6 (42 recipes)</span>
+                            </div>
+                            <a href="cuisine.html" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                                Learn Recipes
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Thai -->
+                    <div class="bg-white rounded-xl shadow-lg card-hover transition-all duration-300">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=400&h=250&fit=crop" alt="Thai Cuisine" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Thai</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="ml-2 text-gray-600">4.3 (29 recipes)</span>
+                            </div>
+                            <a href="cuisine.html" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                                Learn Recipes
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Vietnamese -->
+                    <div class="bg-white rounded-xl shadow-lg card-hover transition-all duration-300">
+                        <img src="https://images.unsplash.com/photo-1547928424-bcd406aaa17d?w=400&h=250&fit=crop" alt="Vietnamese Cuisine" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Vietnamese</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="ml-2 text-gray-600">4.1 (24 recipes)</span>
+                            </div>
+                            <a href="cuisine.html" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                                Learn Recipes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-6">Ready to Start Your Culinary Journey?</h2>
+                <p class="text-xl mb-8">Join thousands of cooking enthusiasts and learn from professional chefs around the world.</p>
+                <a href="contact.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition inline-block">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

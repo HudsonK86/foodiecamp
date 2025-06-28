@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FoodieCamp</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisine</a>
+                    <a href="events.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Login</a>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700" title="Toggle menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-30 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cuisine</a>
+            <a href="events.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <a href="login.html" class="block w-full text-left px-3 py-2 text-blue-600 font-medium">Login</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Breadcrumb -->
+        <div class="bg-primary-blue py-4">
+            <div class="max-w-7xl mx-auto px-4">
+                <nav class="text-sm text-gray-600">
+                    <a href="index.html" class="hover:text-blue-600">Home</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-gray-800">About Us</span>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Mission & Features -->
+        <div class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-6">About FoodieCamp</h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Our mission is to democratize culinary education by providing accessible, high-quality cooking instruction to food enthusiasts worldwide.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <div class="text-center">
+                        <i class="fas fa-book-open text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Expert-Led Courses</h3>
+                        <p class="text-gray-600">Learn from professional chefs with years of experience in top restaurants and culinary schools.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <i class="fas fa-users text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Community Learning</h3>
+                        <p class="text-gray-600">Connect with fellow cooking enthusiasts, share recipes, and learn from each other's experiences.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <i class="fas fa-globe text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Global Cuisines</h3>
+                        <p class="text-gray-600">Explore authentic recipes from around the world and master diverse cooking techniques.</p>
+                    </div>
+                </div>
+
+                <!-- About Content -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop" alt="Cooking Together" class="rounded-xl shadow-lg">
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Why Choose FoodieCamp?</h2>
+                        <p class="text-gray-600 mb-4">
+                            Founded by passionate chefs and food educators, FoodieCamp brings together the best of traditional cooking wisdom and modern culinary innovation. Our platform offers structured learning paths, hands-on workshops, and a supportive community.
+                        </p>
+                        <p class="text-gray-600 mb-6">
+                            Whether you're a complete beginner looking to master basic techniques or an experienced cook wanting to explore new cuisines, our comprehensive curriculum and expert instructors will guide you every step of the way.
+                        </p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Interactive video lessons with step-by-step guidance
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Live cooking workshops and Q&A sessions
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Recipe sharing and community feedback
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                Progress tracking and skill development
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-6">Ready to Start Your Culinary Journey?</h2>
+                <p class="text-xl mb-8">Join thousands of cooking enthusiasts and learn from professional chefs around the world.</p>
+                <a href="contact.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition inline-block">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

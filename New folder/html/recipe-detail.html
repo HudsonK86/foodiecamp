@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Detail - FoodieCamp</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisines</a>
+                    <a href="events.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Login</a>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700" title="Toggle menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-30 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cuisines</a>
+            <a href="events.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <a href="login.html" class="block w-full text-left px-3 py-2 text-blue-600 font-medium">Login</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <div class="max-w-4xl mx-auto px-4 py-8">
+            <!-- Breadcrumb -->
+            <nav class="text-sm text-gray-600 mb-6">
+                <a href="index.html" class="hover:text-blue-600">Home</a>
+                <span class="mx-2">/</span>
+                <a href="cuisines.html" class="hover:text-blue-600">Cuisines</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-800">Traditional Nasi Lemak</span>
+            </nav>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <!-- Recipe Header Image -->
+                <img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&h=250&fit=crop" alt="Traditional Nasi Lemak" class="w-full h-64 object-cover">
+
+                <div class="p-8">
+                    <!-- Basic Information -->
+                    <div class="border-b border-gray-200 pb-8 mb-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h1 class="text-4xl font-bold text-gray-900 mb-4">Traditional Nasi Lemak</h1>
+                                <div class="flex items-center space-x-6 text-sm text-gray-600 mb-4">
+                                    <div class="flex items-center">
+                                        <div class="flex text-yellow-400 mr-2">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span>4.8 (126 reviews)</span>
+                                    </div>
+                                    <span class="flex items-center">
+                                        <i class="fas fa-user mr-2 text-blue-600"></i>
+                                        Posted by Chef Maria
+                                    </span>
+                                    <span class="flex items-center">
+                                        <i class="fas fa-calendar mr-2 text-blue-600"></i>
+                                        Dec 10, 2024
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recipe Details Grid -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            <div class="text-center">
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <i class="fas fa-globe text-2xl text-blue-600 mb-2"></i>
+                                    <p class="text-sm font-medium text-gray-700">Cuisine Type</p>
+                                    <p class="text-lg font-semibold text-gray-900">Malay</p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <i class="fas fa-chart-line text-2xl text-green-600 mb-2"></i>
+                                    <p class="text-sm font-medium text-gray-700">Difficulty</p>
+                                    <p class="text-lg font-semibold text-gray-900">Medium</p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-orange-50 rounded-lg p-4">
+                                    <i class="fas fa-clock text-2xl text-orange-600 mb-2"></i>
+                                    <p class="text-sm font-medium text-gray-700">Cooking Time</p>
+                                    <p class="text-lg font-semibold text-gray-900">45 mins</p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-purple-50 rounded-lg p-4">
+                                    <i class="fas fa-users text-2xl text-purple-600 mb-2"></i>
+                                    <p class="text-sm font-medium text-gray-700">Servings</p>
+                                    <p class="text-lg font-semibold text-gray-900">4 people</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="border-b border-gray-200 pb-8 mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                            <i class="fas fa-align-left mr-2 text-blue-600"></i>
+                            Description
+                        </h2>
+                        <p class="text-gray-700 leading-relaxed">
+                            Nasi Lemak is Malaysia's national dish, featuring fragrant coconut rice served with sambal, anchovies, peanuts, boiled egg, and cucumber. This authentic recipe brings together the perfect balance of flavors that make this dish so beloved across Southeast Asia. The secret lies in cooking the rice with coconut milk and pandan leaves, which gives it its distinctive aroma and creamy texture.
+                        </p>
+                    </div>
+
+                    <!-- Ingredients -->
+                    <div class="border-b border-gray-200 pb-8 mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                            <i class="fas fa-list-ul mr-2 text-blue-600"></i>
+                            Ingredients
+                        </h2>
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-center"><i class="fas fa-circle text-xs text-blue-600 mr-3"></i>2 cups jasmine rice</li>
+                                <li class="flex items-center"><i class="fas fa-circle text-xs text-blue-600 mr-3"></i>1 can coconut milk (400ml)</li>
+                                <li class="flex items-center"><i class="fas fa-circle text-xs text-blue-600 mr-3"></i>2 pandan leaves, knotted</li>
+                                <li class="flex items-center"><i class="fas fa-circle text-xs text-blue-600 mr-3"></i>1 tsp salt</li>
+                                <li class="flex items-center"><i class="fas fa-circle text-xs text-blue-600 mr-3"></i>1 cup water</li>
+                                <li class="flex items-center"><i class="fas fa-circle text-xs text-blue-600 mr-3"></i>4 boiled eggs</li>
+                                <li class="flex items-center"><i class="fas fa-circle text-xs text-blue-600 mr-3"></i>1 cucumber, sliced</li>
+                                <li class="flex items-center"><i class="fas fa-circle text-xs text-blue-600 mr-3"></i>1/2 cup sambal paste</li>
+                                <li class="flex items-center"><i class="fas fa-circle text-xs text-blue-600 mr-3"></i>1/2 cup roasted peanuts</li>
+                                <li class="flex items-center"><i class="fas fa-circle text-xs text-blue-600 mr-3"></i>1/2 cup fried anchovies</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Instructions -->
+                    <div class="border-b border-gray-200 pb-8 mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                            <i class="fas fa-list-ol mr-2 text-blue-600"></i>
+                            Cooking Instructions
+                        </h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold mr-4 mt-1 flex-shrink-0">1</span>
+                                <p class="text-gray-700">Rinse the jasmine rice under cold water until the water runs clear. Drain well.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold mr-4 mt-1 flex-shrink-0">2</span>
+                                <p class="text-gray-700">In a rice cooker or heavy-bottomed pot, combine the rice, coconut milk, pandan leaves, salt, and water. Mix gently.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold mr-4 mt-1 flex-shrink-0">3</span>
+                                <p class="text-gray-700">Cook the rice according to your rice cooker instructions, or if using a pot, bring to a boil, then reduce heat to low, cover, and simmer for 18-20 minutes.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold mr-4 mt-1 flex-shrink-0">4</span>
+                                <p class="text-gray-700">While the rice is cooking, prepare the sambal by heating it in a pan until fragrant. Set aside.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold mr-4 mt-1 flex-shrink-0">5</span>
+                                <p class="text-gray-700">Once the rice is done, remove the pandan leaves and fluff with a fork.</p>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold mr-4 mt-1 flex-shrink-0">6</span>
+                                <p class="text-gray-700">Serve the coconut rice with sambal, boiled eggs, sliced cucumber, roasted peanuts, and fried anchovies arranged beautifully on the plate.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nutrition Information -->
+                    <div class="border-b border-gray-200 pb-8 mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                            <i class="fas fa-heartbeat mr-2 text-blue-600"></i>
+                            Nutrition Information (Per Serving)
+                        </h2>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            <div class="text-center bg-red-50 rounded-lg p-4">
+                                <i class="fas fa-fire text-2xl text-red-600 mb-2"></i>
+                                <p class="text-sm font-medium text-gray-700">Calories</p>
+                                <p class="text-2xl font-bold text-gray-900">425</p>
+                            </div>
+                            <div class="text-center bg-blue-50 rounded-lg p-4">
+                                <i class="fas fa-dumbbell text-2xl text-blue-600 mb-2"></i>
+                                <p class="text-sm font-medium text-gray-700">Protein</p>
+                                <p class="text-2xl font-bold text-gray-900">18g</p>
+                            </div>
+                            <div class="text-center bg-yellow-50 rounded-lg p-4">
+                                <i class="fas fa-bread-slice text-2xl text-yellow-600 mb-2"></i>
+                                <p class="text-sm font-medium text-gray-700">Carbs</p>
+                                <p class="text-2xl font-bold text-gray-900">52g</p>
+                            </div>
+                            <div class="text-center bg-green-50 rounded-lg p-4">
+                                <i class="fas fa-leaf text-2xl text-green-600 mb-2"></i>
+                                <p class="text-sm font-medium text-gray-700">Fat</p>
+                                <p class="text-2xl font-bold text-gray-900">16g</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- YouTube Video -->
+                    <div class="border-b border-gray-200 pb-8 mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                            <i class="fab fa-youtube mr-2 text-red-600"></i>
+                            Video Tutorial
+                        </h2>
+                        <div class="bg-gray-100 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">Watch Chef Maria Cook This Recipe</h3>
+                            <div class="relative w-full video-container">
+                                <iframe 
+                                    class="absolute top-0 left-0 w-full h-full rounded-lg"
+                                    src="https://www.youtube.com/embed/zhI7bQyTmHw"
+                                    title="Traditional Nasi Lemak Recipe Tutorial"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <p class="text-gray-600 text-center mt-4">Follow along with our step-by-step video tutorial</p>
+                        </div>
+                    </div>
+
+                    <!-- Reviews Section -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-900 mb-6">
+                            <i class="fas fa-star mr-2 text-yellow-500"></i>
+                            Reviews (126)
+                        </h2>
+                        
+                        <!-- Add Review Form -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                                <i class="fas fa-edit mr-2 text-blue-600"></i>
+                                Write a Review
+                            </h3>
+                            <form class="space-y-4">
+                                <!-- Star Rating -->
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Your Rating</label>
+                                    <div class="flex items-center space-x-1">
+                                        <button type="button" class="star-rating text-2xl text-gray-300 hover:text-yellow-400 transition" data-rating="1" title="Rate 1 star">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+                                        <button type="button" class="star-rating text-2xl text-gray-300 hover:text-yellow-400 transition" data-rating="2" title="Rate 2 stars">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+                                        <button type="button" class="star-rating text-2xl text-gray-300 hover:text-yellow-400 transition" data-rating="3" title="Rate 3 stars">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+                                        <button type="button" class="star-rating text-2xl text-gray-300 hover:text-yellow-400 transition" data-rating="4" title="Rate 4 stars">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+                                        <button type="button" class="star-rating text-2xl text-gray-300 hover:text-yellow-400 transition" data-rating="5" title="Rate 5 stars">
+                                            <i class="fas fa-star"></i>
+                                        </button>
+                                        <span id="rating-text" class="ml-3 text-sm text-gray-600">Click to rate</span>
+                                    </div>
+                                    <input type="hidden" id="user-rating" name="rating" value="0">
+                                </div>
+
+                                <!-- Comment -->
+                                <div>
+                                    <label for="review-comment" class="block text-sm font-medium text-gray-700 mb-2">Your Review</label>
+                                    <textarea 
+                                        id="review-comment" 
+                                        name="comment" 
+                                        rows="4" 
+                                        placeholder="Share your experience with this recipe. How did it turn out? Any tips for other cooks?"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                        required>
+                                    </textarea>
+                                </div>
+
+                                <!-- Media Upload -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Photo Upload -->
+                                    <div>
+                                        <label for="review-photos" class="block text-sm font-medium text-gray-700 mb-2">
+                                            <i class="fas fa-camera mr-1 text-blue-600"></i>
+                                            Add Photos (Optional)
+                                        </label>
+                                        <input 
+                                            type="file" 
+                                            id="review-photos" 
+                                            name="photos" 
+                                            accept="image/*" 
+                                            multiple
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                        <p class="mt-1 text-xs text-gray-500">Upload photos of your cooking results</p>
+                                    </div>
+
+                                    <!-- Video Upload -->
+                                    <div>
+                                        <label for="review-videos" class="block text-sm font-medium text-gray-700 mb-2">
+                                            <i class="fas fa-video mr-1 text-red-600"></i>
+                                            Add Videos (Optional)
+                                        </label>
+                                        <input 
+                                            type="file" 
+                                            id="review-videos" 
+                                            name="videos" 
+                                            accept="video/*" 
+                                            multiple
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                        <p class="mt-1 text-xs text-gray-500">Share your cooking process or final result</p>
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="flex justify-end pt-2">
+                                    <button 
+                                        type="submit" 
+                                        class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 flex items-center">
+                                        <i class="fas fa-paper-plane mr-2"></i>
+                                        Submit Review
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Review Stats -->
+                        <div class="bg-gray-50 rounded-lg p-6 mb-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <div class="flex items-center mb-4">
+                                        <span class="text-4xl font-bold text-gray-900 mr-2">4.8</span>
+                                        <div>
+                                            <div class="flex text-yellow-400 mb-1">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <p class="text-sm text-gray-600">Based on 126 reviews</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center">
+                                        <span class="text-sm text-gray-600 w-8">5★</span>
+                                        <div class="bg-gray-200 rounded-full h-2 flex-1 mx-2">
+                                            <div class="bg-yellow-400 h-2 rounded-full rating-5-star"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600 w-8">95</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-sm text-gray-600 w-8">4★</span>
+                                        <div class="bg-gray-200 rounded-full h-2 flex-1 mx-2">
+                                            <div class="bg-yellow-400 h-2 rounded-full rating-4-star"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600 w-8">25</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-sm text-gray-600 w-8">3★</span>
+                                        <div class="bg-gray-200 rounded-full h-2 flex-1 mx-2">
+                                            <div class="bg-yellow-400 h-2 rounded-full rating-3-star"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600 w-8">4</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-sm text-gray-600 w-8">2★</span>
+                                        <div class="bg-gray-200 rounded-full h-2 flex-1 mx-2">
+                                            <div class="bg-yellow-400 h-2 rounded-full rating-2-star"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600 w-8">1</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-sm text-gray-600 w-8">1★</span>
+                                        <div class="bg-gray-200 rounded-full h-2 flex-1 mx-2">
+                                            <div class="bg-yellow-400 h-2 rounded-full rating-1-star"></div>
+                                        </div>
+                                        <span class="text-sm text-gray-600 w-8">1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Individual Reviews -->
+                        <div class="space-y-6 mb-6">
+                            <div class="border-b border-gray-200 pb-6">
+                                <div class="flex items-start space-x-4">
+                                    <img src="https://via.placeholder.com/48x48" alt="Sarah Johnson" class="w-12 h-12 rounded-full">
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">Sarah Johnson</h4>
+                                                <div class="flex items-center space-x-2">
+                                                    <div class="flex text-yellow-400 text-sm">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                    </div>
+                                                    <span class="text-sm text-gray-500">• 2 days ago</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-700">Amazing recipe! The coconut rice was perfectly fragrant and the sambal had just the right kick. My family absolutely loved it. Will definitely make this again for special occasions.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border-b border-gray-200 pb-6">
+                                <div class="flex items-start space-x-4">
+                                    <img src="https://via.placeholder.com/48x48" alt="Mike Chen" class="w-12 h-12 rounded-full">
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">Mike Chen</h4>
+                                                <div class="flex items-center space-x-2">
+                                                    <div class="flex text-yellow-400 text-sm">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="far fa-star"></i>
+                                                    </div>
+                                                    <span class="text-sm text-gray-500">• 5 days ago</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-700">Great authentic recipe. The instructions were clear and easy to follow. The pandan leaves really made a difference in the aroma. Highly recommended!</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-b border-gray-200 pb-6">
+                                <div class="flex items-start space-x-4">
+                                    <img src="https://via.placeholder.com/48x48" alt="Lisa Wong" class="w-12 h-12 rounded-full">
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">Lisa Wong</h4>
+                                                <div class="flex items-center space-x-2">
+                                                    <div class="flex text-yellow-400 text-sm">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                    </div>
+                                                    <span class="text-sm text-gray-500">• 1 week ago</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-700">Perfect recipe! Reminds me of my grandmother's cooking. The video tutorial was very helpful too. Thank you Chef Maria for sharing this traditional recipe.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-b border-gray-200 pb-6">
+                                <div class="flex items-start space-x-4">
+                                    <img src="https://via.placeholder.com/48x48" alt="David Kim" class="w-12 h-12 rounded-full">
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">David Kim</h4>
+                                                <div class="flex items-center space-x-2">
+                                                    <div class="flex text-yellow-400 text-sm">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star-half-alt"></i>
+                                                    </div>
+                                                    <span class="text-sm text-gray-500">• 1 week ago</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-700">Excellent recipe with authentic flavors. I made a few adjustments to the spice level, but overall it turned out fantastic. The coconut rice was creamy and aromatic.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pb-6">
+                                <div class="flex items-start space-x-4">
+                                    <img src="https://via.placeholder.com/48x48" alt="Emily Rodriguez" class="w-12 h-12 rounded-full">
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">Emily Rodriguez</h4>
+                                                <div class="flex items-center space-x-2">
+                                                    <div class="flex text-yellow-400 text-sm">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                    </div>
+                                                    <span class="text-sm text-gray-500">• 2 weeks ago</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-700">This recipe brought back so many memories from my trip to Malaysia. The flavors are spot on and the instructions are very detailed. Love it!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reviews Pagination -->
+                        <div class="flex justify-center items-center space-x-2 mb-6">
+                            <a href="#" class="px-3 py-2 text-gray-500 border border-gray-300 rounded-md hover:bg-gray-50 transition">
+                                <i class="fas fa-chevron-left"></i>
+                                Previous
+                            </a>
+                            
+                            <a href="#" class="px-3 py-2 bg-blue-600 text-white border border-blue-600 rounded-md">1</a>
+                            <a href="#" class="px-3 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition">2</a>
+                            <a href="#" class="px-3 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition">3</a>
+                            <span class="px-3 py-2 text-gray-500">...</span>
+                            <a href="#" class="px-3 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition">26</a>
+                            
+                            <a href="#" class="px-3 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition">
+                                Next
+                                <i class="fas fa-chevron-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <button class="flex-1 bg-gray-600 text-white py-3 px-6 rounded-lg hover:bg-gray-700 transition duration-300 flex items-center justify-center">
+                            <i class="fas fa-heart mr-2"></i>
+                            Save Recipe
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            }
+        });
+
+        // Star Rating Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const starButtons = document.querySelectorAll('.star-rating');
+            const ratingText = document.getElementById('rating-text');
+            const userRating = document.getElementById('user-rating');
+            
+            const ratingLabels = {
+                1: 'Poor',
+                2: 'Fair', 
+                3: 'Good',
+                4: 'Very Good',
+                5: 'Excellent'
+            };
+
+            starButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    userRating.value = rating;
+                    
+                    // Update visual stars
+                    starButtons.forEach((star, index) => {
+                        if (index < rating) {
+                            star.classList.remove('text-gray-300');
+                            star.classList.add('text-yellow-400');
+                        } else {
+                            star.classList.remove('text-yellow-400');
+                            star.classList.add('text-gray-300');
+                        }
+                    });
+                    
+                    // Update rating text
+                    ratingText.textContent = ratingLabels[rating];
+                });
+
+                // Hover effect
+                button.addEventListener('mouseenter', function() {
+                    const hoverRating = parseInt(this.getAttribute('data-rating'));
+                    starButtons.forEach((star, index) => {
+                        if (index < hoverRating) {
+                            star.classList.add('text-yellow-300');
+                        } else {
+                            star.classList.remove('text-yellow-300');
+                        }
+                    });
+                });
+
+                button.addEventListener('mouseleave', function() {
+                    starButtons.forEach(star => {
+                        star.classList.remove('text-yellow-300');
+                    });
+                });
+            });
+
+            // Form submission
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const rating = userRating.value;
+                const comment = document.getElementById('review-comment').value;
+                
+                if (rating === '0') {
+                    alert('Please select a rating');
+                    return;
+                }
+                
+                if (!comment.trim()) {
+                    alert('Please write a review comment');
+                    return;
+                }
+                
+                // Here you would normally send the data to your server
+                alert('Review submitted successfully! Thank you for your feedback.');
+                
+                // Reset form
+                this.reset();
+                userRating.value = '0';
+                ratingText.textContent = 'Click to rate';
+                starButtons.forEach(star => {
+                    star.classList.remove('text-yellow-400');
+                    star.classList.add('text-gray-300');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

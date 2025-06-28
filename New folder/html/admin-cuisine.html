@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Cuisines - FoodieCamp Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <button onclick="toggleSidebar()" class="md:hidden text-gray-700 mr-3" title="Toggle sidebar">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisines</a>
+                    <a href="events.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <div class="relative">
+                        <button onclick="toggleAdminMenu()" class="flex items-center text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" title="Admin menu">
+                            <img src="https://via.placeholder.com/24x24" alt="Admin" class="w-6 h-6 rounded-full mr-2">
+                            <span>Admin</span>
+                            <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div id="admin-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-50">
+                            <a href="admin-dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                            <div class="border-t border-gray-200"></div>
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-40 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cuisines</a>
+            <a href="events.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <div class="border-t border-gray-200 mt-2 pt-2">
+                <a href="admin-dashboard.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Dashboard</a>
+                <a href="admin-cuisine.html" class="block px-3 py-2 text-blue-600 font-medium">Cuisines</a>
+                <a href="admin-recipe.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Recipes</a>
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Reviews</a>
+                <a href="events.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Events</a>
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Users</a>
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Inquiries</a>
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Logout</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Sidebar -->
+    <div class="sidebar bg-white shadow-lg fixed left-0 top-16 z-40">
+        <div class="p-4 border-b">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/80x80" alt="Admin" class="w-20 h-20 rounded-full mr-4">
+                <div>
+                    <span class="text-lg font-bold text-gray-800">Admin</span>
+                </div>
+            </div>
+        </div>
+        <nav class="mt-4">
+            <a href="admin-dashboard.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a href="admin-cuisine.html" class="flex items-center px-4 py-3 text-gray-700 bg-primary-blue">
+                <i class="fas fa-utensils mr-3"></i>
+                Cuisine
+            </a>
+            <a href="admin-recipe.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-book mr-3"></i>
+                Recipe
+            </a>
+            <a href="admin-review.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-star mr-3"></i>
+                Review
+            </a>
+            <a href="admin-event.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-calendar mr-3"></i>
+                Event
+            </a>
+            <a href="admin-user.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-users mr-3"></i>
+                User
+            </a>
+            <a href="admin-inquiry.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-envelope mr-3"></i>
+                Inquiry
+            </a>
+            <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-cog mr-3"></i>
+                Profile
+            </a>
+        </nav>
+        <div class="absolute bottom-4 left-4 right-4">
+            <a href="index.html" class="flex items-center justify-center w-full px-4 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content bg-gray-50 min-h-screen">
+        <div class="p-8">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Manage Cuisines</h1>
+                <button onclick="showCreateCuisineModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors" title="Create new cuisine">
+                    <i class="fas fa-plus mr-2"></i>
+                    Create Cuisine
+                </button>
+            </div>
+
+            <!-- Filter and Search -->
+            <div class="bg-white rounded-lg shadow p-6 mb-8">
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <label for="visibility-filter" class="block text-sm font-medium text-gray-700 mb-2">Visibility</label>
+                        <select id="visibility-filter" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            <option value="all">All Cuisines</option>
+                            <option value="public">Public</option>
+                            <option value="private">Private</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="rating-filter" class="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                        <select id="rating-filter" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            <option value="all">All Ratings</option>
+                            <option value="5">5 Stars</option>
+                            <option value="4">4+ Stars</option>
+                            <option value="3">3+ Stars</option>
+                            <option value="2">2+ Stars</option>
+                            <option value="1">1+ Stars</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="search-cuisine" class="block text-sm font-medium text-gray-700 mb-2">Search</label>
+                        <div class="relative">
+                            <input type="text" id="search-cuisine" placeholder="Search cuisines..." class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 pl-10">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cuisine Grid -->
+            <div class="grid md:grid-cols-3 lg:grid-cols-3 gap-8 mb-8" id="cuisine-grid">
+                <!-- Chinese -->
+                <div class="bg-white rounded-xl shadow-lg transition-all duration-300 cuisine-card" data-visibility="public" data-rating="4.5">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1617093700631-8b3d9b4e5e6f?w=400&h=250&fit=crop" alt="Chinese Cuisine" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">Public</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Chinese</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="ml-2 text-gray-600">4.5 (48 recipes)</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="editCuisine('Chinese')" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition border border-blue-600" title="Edit cuisine">
+                                <i class="fas fa-edit mr-1"></i>
+                                Edit
+                            </button>
+                            <button onclick="toggleVisibility('Chinese', 'public')" class="bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition" title="Change visibility">
+                                <i class="fas fa-eye mr-1"></i>
+                                Private
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Malay -->
+                <div class="bg-white rounded-xl shadow-lg transition-all duration-300 cuisine-card" data-visibility="public" data-rating="4.8">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03246963d17a?w=400&h=250&fit=crop" alt="Malay Cuisine" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">Public</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Malay</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-gray-600">4.8 (32 recipes)</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="editCuisine('Malay')" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition border border-blue-600" title="Edit cuisine">
+                                <i class="fas fa-edit mr-1"></i>
+                                Edit
+                            </button>
+                            <button onclick="toggleVisibility('Malay', 'public')" class="bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition" title="Change visibility">
+                                <i class="fas fa-eye mr-1"></i>
+                                Private
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indian -->
+                <div class="bg-white rounded-xl shadow-lg transition-all duration-300 cuisine-card" data-visibility="private" data-rating="4.2">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=250&fit=crop" alt="Indian Cuisine" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">Private</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Indian</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-gray-600">4.2 (56 recipes)</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="editCuisine('Indian')" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition border border-blue-600" title="Edit cuisine">
+                                <i class="fas fa-edit mr-1"></i>
+                                Edit
+                            </button>
+                            <button onclick="toggleVisibility('Indian', 'private')" class="bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition" title="Change visibility">
+                                <i class="fas fa-eye-slash mr-1"></i>
+                                Public
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Western -->
+                <div class="bg-white rounded-xl shadow-lg transition-all duration-300 cuisine-card" data-visibility="public" data-rating="4.6">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400&h=250&fit=crop" alt="Western Cuisine" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">Public</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Western</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-gray-600">4.6 (42 recipes)</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="editCuisine('Western')" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition border border-blue-600" title="Edit cuisine">
+                                <i class="fas fa-edit mr-1"></i>
+                                Edit
+                            </button>
+                            <button onclick="toggleVisibility('Western', 'public')" class="bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition" title="Change visibility">
+                                <i class="fas fa-eye mr-1"></i>
+                                Private
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thai -->
+                <div class="bg-white rounded-xl shadow-lg transition-all duration-300 cuisine-card" data-visibility="public" data-rating="4.3">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=400&h=250&fit=crop" alt="Thai Cuisine" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">Public</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Thai</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="ml-2 text-gray-600">4.3 (29 recipes)</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="editCuisine('Thai')" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition border border-blue-600" title="Edit cuisine">
+                                <i class="fas fa-edit mr-1"></i>
+                                Edit
+                            </button>
+                            <button onclick="toggleVisibility('Thai', 'public')" class="bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition" title="Change visibility">
+                                <i class="fas fa-eye mr-1"></i>
+                                Private
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vietnamese -->
+                <div class="bg-white rounded-xl shadow-lg transition-all duration-300 cuisine-card" data-visibility="public" data-rating="4.1">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1547928424-bcd406aaa17d?w=400&h=250&fit=crop" alt="Vietnamese Cuisine" class="w-full h-48 object-cover rounded-t-xl">
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">Public</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Vietnamese</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-gray-600">4.1 (24 recipes)</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button onclick="editCuisine('Vietnamese')" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition border border-blue-600" title="Edit cuisine">
+                                <i class="fas fa-edit mr-1"></i>
+                                Edit
+                            </button>
+                            <button onclick="toggleVisibility('Vietnamese', 'public')" class="bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition" title="Change visibility">
+                                <i class="fas fa-eye mr-1"></i>
+                                Private
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center items-center space-x-4">
+                <button class="px-4 py-2 bg-gray-300 text-gray-600 rounded-lg cursor-not-allowed" disabled>
+                    <i class="fas fa-chevron-left mr-2"></i>
+                    Previous
+                </button>
+                <span class="px-4 py-2 bg-blue-600 text-white rounded-lg">1</span>
+                <span class="px-4 py-2 text-gray-600">2</span>
+                <span class="px-4 py-2 text-gray-600">3</span>
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    Next
+                    <i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create/Edit Cuisine Modal -->
+    <div id="cuisine-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-screen overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 id="modal-title" class="text-2xl font-bold text-gray-800">Create New Cuisine</h2>
+                        <button onclick="closeCuisineModal()" class="text-gray-500 hover:text-gray-700" title="Close modal">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+
+                    <form id="cuisine-form" class="space-y-6">
+                        <!-- Cuisine Name -->
+                        <div>
+                            <label for="cuisine-name" class="block text-sm font-medium text-gray-700 mb-2">Cuisine Name</label>
+                            <input type="text" id="cuisine-name" name="name" required 
+                                   placeholder="Enter cuisine name"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <!-- Cuisine Picture -->
+                        <div>
+                            <label for="cuisine-picture" class="block text-sm font-medium text-gray-700 mb-2">Cuisine Picture</label>
+                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="space-y-1 text-center">
+                                    <div id="image-preview" class="hidden">
+                                        <img id="preview-image" src="" alt="Preview" class="mx-auto h-32 w-32 object-cover rounded-lg">
+                                    </div>
+                                    <div id="upload-placeholder">
+                                        <i class="fas fa-image text-4xl text-gray-400 mb-4"></i>
+                                        <div class="flex text-sm text-gray-600">
+                                            <label for="cuisine-picture" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                                <span>Upload a file</span>
+                                                <input id="cuisine-picture" name="picture" type="file" accept="image/*" class="sr-only" onchange="previewCuisineImage(this)">
+                                            </label>
+                                            <p class="pl-1">or drag and drop</p>
+                                        </div>
+                                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Visibility -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Visibility</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="visibility" value="public" checked class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                    <span class="ml-2 text-sm text-gray-700">Public - Visible to all users</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="visibility" value="private" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                    <span class="ml-2 text-sm text-gray-700">Private - Only visible to admins</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="flex space-x-4 pt-6">
+                            <button type="submit" class="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                                <i class="fas fa-save mr-2"></i>
+                                Save Cuisine
+                            </button>
+                            <button type="button" onclick="closeCuisineModal()" class="flex-1 bg-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-400 transition duration-300">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 ml-0 md:ml-280">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        function toggleAdminMenu() {
+            const adminMenu = document.getElementById('admin-menu');
+            adminMenu.classList.toggle('hidden');
+        }
+
+        function showCreateCuisineModal() {
+            document.getElementById('modal-title').textContent = 'Create New Cuisine';
+            document.getElementById('cuisine-form').reset();
+            document.getElementById('image-preview').classList.add('hidden');
+            document.getElementById('upload-placeholder').classList.remove('hidden');
+            document.getElementById('cuisine-modal').classList.remove('hidden');
+        }
+
+        function editCuisine(cuisineName) {
+            document.getElementById('modal-title').textContent = 'Edit ' + cuisineName + ' Cuisine';
+            document.getElementById('cuisine-name').value = cuisineName;
+            // In a real application, you would load the cuisine data here
+            document.getElementById('cuisine-modal').classList.remove('hidden');
+        }
+
+        function closeCuisineModal() {
+            document.getElementById('cuisine-modal').classList.add('hidden');
+        }
+
+        function previewCuisineImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('preview-image').src = e.target.result;
+                    document.getElementById('image-preview').classList.remove('hidden');
+                    document.getElementById('upload-placeholder').classList.add('hidden');
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function toggleVisibility(cuisineName, currentVisibility) {
+            const newVisibility = currentVisibility === 'public' ? 'private' : 'public';
+            const action = newVisibility === 'public' ? 'make public' : 'make private';
+            
+            if (confirm(`Are you sure you want to ${action} ${cuisineName} cuisine?`)) {
+                alert(`${cuisineName} cuisine visibility changed to ${newVisibility}`);
+                // In a real application, send AJAX request to update visibility
+                location.reload(); // Reload to show updated state
+            }
+        }
+
+        // Filter functionality
+        function filterCuisines() {
+            const visibilityFilter = document.getElementById('visibility-filter').value;
+            const ratingFilter = document.getElementById('rating-filter').value;
+            const searchTerm = document.getElementById('search-cuisine').value.toLowerCase();
+            const cuisineCards = document.querySelectorAll('.cuisine-card');
+
+            cuisineCards.forEach(card => {
+                const visibility = card.dataset.visibility;
+                const rating = parseFloat(card.dataset.rating);
+                const name = card.querySelector('h3').textContent.toLowerCase();
+
+                let showCard = true;
+
+                // Visibility filter
+                if (visibilityFilter !== 'all' && visibility !== visibilityFilter) {
+                    showCard = false;
+                }
+
+                // Rating filter
+                if (ratingFilter !== 'all' && rating < parseFloat(ratingFilter)) {
+                    showCard = false;
+                }
+
+                // Search filter
+                if (searchTerm && !name.includes(searchTerm)) {
+                    showCard = false;
+                }
+
+                card.style.display = showCard ? 'block' : 'none';
+            });
+        }
+
+        // Add event listeners for filters
+        document.getElementById('visibility-filter').addEventListener('change', filterCuisines);
+        document.getElementById('rating-filter').addEventListener('change', filterCuisines);
+        document.getElementById('search-cuisine').addEventListener('input', filterCuisines);
+
+        // Handle form submission
+        document.getElementById('cuisine-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const cuisineName = formData.get('name');
+            alert(`Cuisine "${cuisineName}" saved successfully!`);
+            closeCuisineModal();
+            // In a real application, send form data to server
+        });
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                document.getElementById('admin-menu').classList.add('hidden');
+            }
+        });
+
+        // Close menus when clicking outside
+        document.addEventListener('click', function(event) {
+            const adminMenu = document.getElementById('admin-menu');
+            const adminButton = event.target.closest('[onclick="toggleAdminMenu()"]');
+            
+            if (!adminButton && !adminMenu.contains(event.target)) {
+                adminMenu.classList.add('hidden');
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('cuisine-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCuisineModal();
+            }
+        });
+    </script>
+</body>
+</html>

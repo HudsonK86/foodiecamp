@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details - FoodieCamp</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisine</a>
+                    <a href="events.html" class="text-blue-600 px-3 py-2 rounded-md text-sm font-medium border-b-2 border-blue-600">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Login</a>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700" title="Toggle menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-30 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cuisine</a>
+            <a href="events.html" class="block px-3 py-2 text-blue-600 font-medium">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <a href="login.html" class="block w-full text-left px-3 py-2 text-blue-600 font-medium">Login</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Breadcrumb -->
+        <div class="bg-white border-b">
+            <div class="max-w-7xl mx-auto px-4 py-4">
+                <nav class="flex text-sm text-gray-600">
+                    <a href="index.html" class="hover:text-blue-600">Home</a>
+                    <span class="mx-2">/</span>
+                    <a href="events.html" class="hover:text-blue-600">Events</a>
+                    <span class="mx-2">/</span>
+                    <span class="text-gray-800" id="event-breadcrumb">Event Details</span>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Event Hero Section -->
+        <div class="bg-white">
+            <div class="max-w-7xl mx-auto px-4 py-8">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Event Image -->
+                    <div>
+                        <img id="event-hero-image" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop" alt="Event Image" class="w-full h-96 object-cover rounded-xl shadow-lg">
+                    </div>
+                    
+                    <!-- Event Info -->
+                    <div class="space-y-6">
+                        <div>
+                            <h1 id="event-title" class="text-4xl font-bold text-gray-800 mb-4">Asian Fusion Workshop</h1>
+                            <p id="event-description" class="text-lg text-gray-600 leading-relaxed">
+                                Join our expert chef for an immersive Asian Fusion cooking experience. Learn to blend traditional Asian flavors with modern culinary techniques to create stunning dishes that will impress your family and friends.
+                            </p>
+                        </div>
+
+                        <!-- Event Details Grid -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-calendar text-blue-600 mr-2"></i>
+                                    <span class="font-semibold text-gray-800">Event Type</span>
+                                </div>
+                                <p id="event-type" class="text-gray-600">Workshop</p>
+                            </div>
+
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-globe text-blue-600 mr-2"></i>
+                                    <span class="font-semibold text-gray-800">Cuisine Type</span>
+                                </div>
+                                <p id="cuisine-type" class="text-gray-600">Asian Fusion</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-calendar text-blue-600 mr-2"></i>
+                                    <span class="font-semibold text-gray-800">Date</span>
+                                </div>
+                                <p id="event-date" class="text-gray-600">Dec 15, 2024</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-clock text-blue-600 mr-2"></i>
+                                    <span class="font-semibold text-gray-800">Time</span>
+                                </div>
+                                <p id="event-time" class="text-gray-600">2:00 PM - 5:00 PM</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-users text-blue-600 mr-2"></i>
+                                    <span class="font-semibold text-gray-800">Maximum Participants</span>
+                                </div>
+                                <p id="event-participants" class="text-gray-600"><span id="participant-count">15</span> participants</p>
+                            </div>
+
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>
+                                    <span class="font-semibold text-gray-800">Location</span>
+                                </div>
+                                <p id="event-location" class="text-gray-600">FoodieCamp Kitchen Studio</p>
+                            </div>
+                            
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-dollar-sign text-blue-600 mr-2"></i>
+                                    <span class="font-semibold text-gray-800">Price</span>
+                                </div>
+                                <p id="event-price" class="text-gray-600">$85 per person</p>
+                            </div>
+
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-user text-blue-600 mr-2"></i>
+                                    <span class="font-semibold text-gray-800">Organizer</span>
+                                </div>
+                                <p id="event-organizer" class="text-gray-600">Chef Maria Rodriguez</p>
+                            </div>
+                        </div>
+
+                        <!-- Organizer Bio -->
+                        <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-user-tie text-blue-600 mr-2"></i>
+                                <span class="font-semibold text-gray-800">Organizer Bio</span>
+                            </div>
+                            <p id="organizer-bio" class="text-gray-600">Chef Maria Rodriguez is a renowned culinary expert with over 15 years of experience in Asian fusion cuisine. She has trained in top restaurants across Asia and brings authentic techniques combined with modern innovation to her teaching.</p>
+                        </div>
+
+                        <!-- Contact -->
+                        <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-phone text-blue-600 mr-2"></i>
+                                <span class="font-semibold text-gray-800">Contact</span>
+                            </div>
+                            <p id="event-contact" class="text-gray-600">Maria Rodriguez - maria@foodiecamp.com</p>
+                        </div>
+
+                        <!-- Registration Button -->
+                        <div class="pt-4">
+                            <button id="register-btn" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                                Register for Event
+                            </button>
+                            <p class="text-sm text-gray-500 mt-2 text-center">
+                                <span id="spots-remaining">5</span> spots remaining
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Details Section -->
+        <div class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- What You'll Learn -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                            What You'll Learn
+                        </h3>
+                        <ul id="learning-objectives" class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                Traditional Asian cooking techniques
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                Flavor balancing and seasoning
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                Modern presentation techniques
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                Knife skills and food preparation
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                Recipe adaptations for home cooking
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- What's Included -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-gift text-blue-600 mr-2"></i>
+                            What's Included
+                        </h3>
+                        <ul id="included-items" class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-utensils text-blue-600 mr-2 mt-1"></i>
+                                All cooking equipment and ingredients
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-book text-blue-600 mr-2 mt-1"></i>
+                                Recipe booklet to take home
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-coffee text-blue-600 mr-2 mt-1"></i>
+                                Welcome drink and refreshments
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-camera text-blue-600 mr-2 mt-1"></i>
+                                Professional photos of your dishes
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-certificate text-blue-600 mr-2 mt-1"></i>
+                                Certificate of completion
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Requirements -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">
+                            <i class="fas fa-info-circle text-orange-500 mr-2"></i>
+                            Requirements
+                        </h3>
+                        <ul id="requirements" class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-user-check text-orange-500 mr-2 mt-1"></i>
+                                No prior cooking experience required
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-tshirt text-orange-500 mr-2 mt-1"></i>
+                                Comfortable clothing recommended
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-hand-paper text-orange-500 mr-2 mt-1"></i>
+                                Closed-toe shoes required
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-clock text-orange-500 mr-2 mt-1"></i>
+                                Please arrive 15 minutes early
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-heart text-orange-500 mr-2 mt-1"></i>
+                                Passion for learning and food!
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Registration Modal -->
+    <div id="registration-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="bg-white rounded-xl p-8 max-w-md w-full">
+                <div class="text-center mb-6">
+                    <i class="fas fa-check-circle text-green-500 text-4xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-gray-800">Registration Successful!</h3>
+                    <p class="text-gray-600 mt-2">You've been registered for this event. We'll send you a confirmation email shortly.</p>
+                </div>
+                <button onclick="closeRegistrationModal()" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+                    Continue
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../script/scripts.js"></script>
+    <script>
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            }
+        });
+
+        // Registration functionality
+        function showRegistrationModal() {
+            document.getElementById('registration-modal').classList.remove('hidden');
+        }
+
+        function closeRegistrationModal() {
+            document.getElementById('registration-modal').classList.add('hidden');
+        }
+
+        // Add click event to registration button
+        document.getElementById('register-btn').addEventListener('click', showRegistrationModal);
+
+        // Load event details from URL parameters or use default
+        function loadEventDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('id');
+            
+            // In a real application, you would fetch event details from an API
+            // For now, we'll use sample data
+            const sampleEvents = {
+                '1': {
+                    title: 'Asian Fusion Workshop',
+                    description: 'Join our expert chef for an immersive Asian Fusion cooking experience. Learn to blend traditional Asian flavors with modern culinary techniques to create stunning dishes that will impress your family and friends.',
+                    eventType: 'Workshop',
+                    cuisineType: 'Asian Fusion',
+                    date: 'Dec 15, 2024',
+                    time: '2:00 PM - 5:00 PM',
+                    organizer: 'Chef Maria Rodriguez',
+                    organizerBio: 'Chef Maria Rodriguez is a renowned culinary expert with over 15 years of experience in Asian fusion cuisine. She has trained in top restaurants across Asia and brings authentic techniques combined with modern innovation to her teaching.',
+                    contact: 'Maria Rodriguez - maria@foodiecamp.com',
+                    participants: 15,
+                    location: 'FoodieCamp Kitchen Studio',
+                    price: '$85 per person',
+                    spotsRemaining: 5,
+                    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop'
+                },
+                '2': {
+                    title: 'French Pastry Masterclass',
+                    description: 'Master the art of French pastry making with our renowned pastry chef. Learn classic techniques and create beautiful, delicious pastries from scratch.',
+                    eventType: 'Masterclass',
+                    cuisineType: 'French',
+                    date: 'Dec 18, 2024',
+                    time: '10:00 AM - 2:00 PM',
+                    organizer: 'Chef Pierre Dubois',
+                    organizerBio: 'Chef Pierre Dubois is a master pastry chef trained in the finest patisseries of Paris. With 20 years of experience, he specializes in traditional French techniques and modern artistic presentations.',
+                    contact: 'Pierre Dubois - pierre@foodiecamp.com',
+                    participants: 12,
+                    location: 'FoodieCamp Pastry Studio',
+                    price: '$95 per person',
+                    spotsRemaining: 3,
+                    image: 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=800&h=600&fit=crop'
+                },
+                '3': {
+                    title: 'Healthy Mediterranean',
+                    description: 'Discover the secrets of healthy Mediterranean cuisine. Learn to prepare nutritious and flavorful dishes that promote wellness and longevity.',
+                    eventType: 'Workshop',
+                    cuisineType: 'Mediterranean',
+                    date: 'Dec 20, 2024',
+                    time: '3:00 PM - 6:00 PM',
+                    organizer: 'Chef Sofia Kostas',
+                    organizerBio: 'Chef Sofia Kostas brings the authentic flavors of the Mediterranean to life with her expertise in healthy, traditional cooking methods passed down through generations in Greece.',
+                    contact: 'Sofia Kostas - sofia@foodiecamp.com',
+                    participants: 20,
+                    location: 'FoodieCamp Garden Kitchen',
+                    price: '$75 per person',
+                    spotsRemaining: 8,
+                    image: 'https://images.unsplash.com/photo-1556909195-f4d3aa346b8d?w=800&h=600&fit=crop'
+                }
+            };
+
+            const event = sampleEvents[eventId] || sampleEvents['1'];
+            
+            // Update page content
+            document.getElementById('event-title').textContent = event.title;
+            document.getElementById('event-description').textContent = event.description;
+            document.getElementById('event-type').textContent = event.eventType;
+            document.getElementById('cuisine-type').textContent = event.cuisineType;
+            document.getElementById('event-date').textContent = event.date;
+            document.getElementById('event-time').textContent = event.time;
+            document.getElementById('event-organizer').textContent = event.organizer;
+            document.getElementById('organizer-bio').textContent = event.organizerBio;
+            document.getElementById('event-contact').textContent = event.contact;
+            document.getElementById('participant-count').textContent = event.participants;
+            document.getElementById('event-location').textContent = event.location;
+            document.getElementById('event-price').textContent = event.price;
+            document.getElementById('spots-remaining').textContent = event.spotsRemaining;
+            document.getElementById('event-hero-image').src = event.image;
+            document.getElementById('event-hero-image').alt = event.title;
+            document.getElementById('event-breadcrumb').textContent = event.title;
+            
+            // Update page title
+            document.title = `${event.title} - FoodieCamp`;
+        }
+
+        // Load event details when page loads
+        document.addEventListener('DOMContentLoaded', loadEventDetails);
+    </script>
+</body>
+</html>

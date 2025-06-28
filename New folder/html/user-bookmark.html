@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookmarks - FoodieCamp</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/user-dashboard.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <button onclick="toggleSidebar()" class="md:hidden text-gray-700 mr-3" title="Toggle sidebar">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisines</a>
+                    <a href="events.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" title="User menu">
+                            <img src="https://via.placeholder.com/24x24" alt="Uncle Roger" class="w-6 h-6 rounded-full mr-2">
+                            <span>Uncle Roger</span>
+                            <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div id="user-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-50">
+                            <a href="user-dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                            <div class="border-t border-gray-200"></div>
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-40 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cuisines</a>
+            <a href="events.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <div class="border-t border-gray-200 mt-2 pt-2">
+                <a href="user-dashboard.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Dashboard</a>
+                <a href="user-recipe.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">My Recipes</a>
+                <a href="user-bookmark.html" class="block px-3 py-2 text-blue-600 font-medium">Bookmarks</a>
+                <a href="user-event.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">My Events</a>
+                <a href="user-notification.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Notifications</a>
+                <a href="post-recipe.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Post Recipe</a>
+                <a href="post-event.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Post Event</a>
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Logout</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- User Sidebar -->
+    <div class="sidebar bg-white shadow-lg fixed left-0 top-16 z-40">
+        <div class="p-4 border-b">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/80x80" alt="Uncle Roger" class="w-20 h-20 rounded-full mr-4">
+                <div>
+                    <span class="text-lg font-bold text-gray-800">Uncle Roger</span>
+                </div>
+            </div>
+        </div>
+        <nav class="mt-4">
+            <a href="user-dashboard.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a href="user-recipe.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-book mr-3"></i>
+                Recipe
+            </a>
+            <a href="user-bookmark.html" class="flex items-center px-4 py-3 text-gray-700 bg-primary-blue">
+                <i class="fas fa-bookmark mr-3"></i>
+                Bookmark
+            </a>
+            <a href="user-event.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-calendar mr-3"></i>
+                Event
+            </a>
+            <a href="user-register-event.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-calendar-check mr-3"></i>
+                Event Registration
+            </a>
+            <a href="user-notification.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-bell mr-3"></i>
+                Notification
+                <span class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full">5</span>
+            </a>
+            <a href="user-profile.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-cog mr-3"></i>
+                Profile
+            </a>
+        </nav>
+        <div class="absolute bottom-16 left-4 right-4">
+            <a href="index.html" class="flex items-center justify-center w-full px-4 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                Logout
+            </a>
+        </div>  
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content bg-gray-50 min-h-screen">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">My Bookmarks</h1>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-600">28 bookmarked recipes</span>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Cuisine Type Filter -->
+                    <div>
+                        <label for="cuisine-filter" class="block text-sm font-medium text-gray-700 mb-2">Cuisine Type</label>
+                        <select id="cuisine-filter" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">All Cuisines</option>
+                            <option value="chinese">Chinese</option>
+                            <option value="malay">Malay</option>
+                            <option value="indian">Indian</option>
+                            <option value="western">Western</option>
+                            <option value="thai">Thai</option>
+                            <option value="vietnamese">Vietnamese</option>
+                            <option value="japanese">Japanese</option>
+                            <option value="korean">Korean</option>
+                        </select>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div>
+                        <label for="search-input" class="block text-sm font-medium text-gray-700 mb-2">Search Recipes</label>
+                        <div class="relative">
+                            <input type="text" id="search-input" placeholder="Search by recipe name, ingredients..." class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookmarks Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="bookmarks-grid">
+                <!-- Recipe Card 1 - Not Completed -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden bookmark-card" data-cuisine="chinese" data-completed="false">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=400&h=250&fit=crop" alt="Kung Pao Chicken" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-white bg-opacity-90 text-gray-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-bookmark text-blue-600 mr-1"></i>
+                                Bookmarked
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Kung Pao Chicken</h3>
+                        <p class="text-sm text-gray-600 mb-2">Chinese • 30 mins • by Chef Wong</p>
+                        <p class="text-sm text-gray-500 mb-3">A classic Sichuan dish with tender chicken, peanuts, and spicy sauce...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-sm text-gray-600">4.8 (156)</span>
+                            </div>
+                            <span class="text-xs text-gray-500">Bookmarked: 2 days ago</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="recipe-detail.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors">
+                                <i class="fas fa-eye mr-1"></i>
+                                Learn More
+                            </a>
+                            <button onclick="removeBookmark(this)" class="bg-red-600 hover:bg-red-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Remove from bookmarks">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button onclick="toggleCompleted(this)" class="bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Mark as completed">
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recipe Card 2 - Completed -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden bookmark-card" data-cuisine="malay" data-completed="true">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=400&h=250&fit=crop" alt="Nasi Lemak" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-white bg-opacity-90 text-gray-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-bookmark text-blue-600 mr-1"></i>
+                                Bookmarked
+                            </span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-check mr-1"></i>
+                                Completed
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Authentic Nasi Lemak</h3>
+                        <p class="text-sm text-gray-600 mb-2">Malay • 45 mins • by Chef Siti</p>
+                        <p class="text-sm text-gray-500 mb-3">Traditional Malaysian coconut rice dish with sambal and anchovies...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-sm text-gray-600">4.7 (203)</span>
+                            </div>
+                            <span class="text-xs text-gray-500">Completed: Yesterday</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="recipe-detail.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors">
+                                <i class="fas fa-eye mr-1"></i>
+                                Learn More
+                            </a>
+                            <button onclick="removeBookmark(this)" class="bg-red-600 hover:bg-red-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Remove from bookmarks">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button onclick="toggleCompleted(this)" class="bg-gray-600 hover:bg-gray-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Mark as incomplete">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recipe Card 3 - Not Completed -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden bookmark-card" data-cuisine="indian" data-completed="false">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=250&fit=crop" alt="Butter Chicken" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-white bg-opacity-90 text-gray-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-bookmark text-blue-600 mr-1"></i>
+                                Bookmarked
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Creamy Butter Chicken</h3>
+                        <p class="text-sm text-gray-600 mb-2">Indian • 40 mins • by Chef Raj</p>
+                        <p class="text-sm text-gray-500 mb-3">Rich and creamy Indian curry dish with tender chicken pieces...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-sm text-gray-600">4.9 (342)</span>
+                            </div>
+                            <span class="text-xs text-gray-500">Bookmarked: 1 week ago</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="recipe-detail.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors">
+                                <i class="fas fa-eye mr-1"></i>
+                                Learn More
+                            </a>
+                            <button onclick="removeBookmark(this)" class="bg-red-600 hover:bg-red-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Remove from bookmarks">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button onclick="toggleCompleted(this)" class="bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Mark as completed">
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recipe Card 4 - Not Completed -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden bookmark-card" data-cuisine="western" data-completed="false">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=250&fit=crop" alt="Grilled Steak" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-white bg-opacity-90 text-gray-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-bookmark text-blue-600 mr-1"></i>
+                                Bookmarked
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Perfect Grilled Steak</h3>
+                        <p class="text-sm text-gray-600 mb-2">Western • 25 mins • by Chef Michael</p>
+                        <p class="text-sm text-gray-500 mb-3">Juicy and tender grilled beef steak with herb butter and garlic mashed potatoes...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-sm text-gray-600">4.6 (178)</span>
+                            </div>
+                            <span class="text-xs text-gray-500">Bookmarked: 3 days ago</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="recipe-detail.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors">
+                                <i class="fas fa-eye mr-1"></i>
+                                Learn More
+                            </a>
+                            <button onclick="removeBookmark(this)" class="bg-red-600 hover:bg-red-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Remove from bookmarks">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button onclick="toggleCompleted(this)" class="bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Mark as completed">
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recipe Card 5 - Completed -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden bookmark-card" data-cuisine="thai" data-completed="true">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=400&h=250&fit=crop" alt="Pad Thai" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-white bg-opacity-90 text-gray-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-bookmark text-blue-600 mr-1"></i>
+                                Bookmarked
+                            </span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-check mr-1"></i>
+                                Completed
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Classic Pad Thai</h3>
+                        <p class="text-sm text-gray-600 mb-2">Thai • 20 mins • by Chef Apinya</p>
+                        <p class="text-sm text-gray-500 mb-3">Traditional Thai stir-fried noodles with shrimp and tofu...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-sm text-gray-600">4.8 (267)</span>
+                            </div>
+                            <span class="text-xs text-gray-500">Completed: 3 days ago</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="recipe-detail.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors">
+                                <i class="fas fa-eye mr-1"></i>
+                                Learn More
+                            </a>
+                            <button onclick="removeBookmark(this)" class="bg-red-600 hover:bg-red-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Remove from bookmarks">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button onclick="toggleCompleted(this)" class="bg-gray-600 hover:bg-gray-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Mark as incomplete">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recipe Card 6 - Not Completed -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden bookmark-card" data-cuisine="vietnamese" data-completed="false">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=250&fit=crop" alt="Pho" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-white bg-opacity-90 text-gray-700 px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-bookmark text-blue-600 mr-1"></i>
+                                Bookmarked
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Authentic Pho Bo</h3>
+                        <p class="text-sm text-gray-600 mb-2">Vietnamese • 2 hours • by Chef Linh</p>
+                        <p class="text-sm text-gray-500 mb-3">Traditional Vietnamese beef noodle soup with aromatic broth...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <span class="ml-1 text-sm text-gray-600">4.9 (412)</span>
+                            </div>
+                            <span class="text-xs text-gray-500">Bookmarked: 5 days ago</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="recipe-detail.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors">
+                                <i class="fas fa-eye mr-1"></i>
+                                Learn More
+                            </a>
+                            <button onclick="removeBookmark(this)" class="bg-red-600 hover:bg-red-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Remove from bookmarks">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button onclick="toggleCompleted(this)" class="bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Mark as completed">
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center mt-8">
+                <nav class="flex space-x-2">
+                    <button class="px-3 py-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors" disabled title="Previous page">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="px-3 py-2 bg-blue-600 text-white rounded-md">1</button>
+                    <button class="px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">2</button>
+                    <button class="px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">3</button>
+                    <span class="px-3 py-2 text-gray-500">...</span>
+                    <button class="px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">5</button>
+                    <button class="px-3 py-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors" title="Next page">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 ml-0 md:ml-280">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        function toggleUserMenu() {
+            const userMenu = document.getElementById('user-menu');
+            userMenu.classList.toggle('hidden');
+        }
+
+        function toggleProfileMenu(type) {
+            const menu = document.getElementById(type + '-profile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Remove bookmark function
+        function removeBookmark(button) {
+            const card = button.closest('.bookmark-card');
+            if (confirm('Are you sure you want to remove this recipe from your bookmarks?')) {
+                card.style.transition = 'opacity 0.3s ease';
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    card.remove();
+                    updateBookmarkCount();
+                }, 300);
+            }
+        }
+
+        // Toggle completed status
+        function toggleCompleted(button) {
+            const card = button.closest('.bookmark-card');
+            const isCompleted = card.dataset.completed === 'true';
+            const completedBadge = card.querySelector('.absolute.top-2.right-2');
+            
+            if (isCompleted) {
+                // Mark as incomplete
+                card.dataset.completed = 'false';
+                if (completedBadge) {
+                    completedBadge.remove();
+                }
+                button.className = 'bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-3 rounded-lg transition-colors';
+                button.title = 'Mark as completed';
+                button.innerHTML = '<i class="fas fa-check"></i>';
+            } else {
+                // Mark as completed
+                card.dataset.completed = 'true';
+                const imageContainer = card.querySelector('.relative');
+                const newBadge = document.createElement('div');
+                newBadge.className = 'absolute top-2 right-2';
+                newBadge.innerHTML = `
+                    <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                        <i class="fas fa-check mr-1"></i>
+                        Completed
+                    </span>
+                `;
+                imageContainer.appendChild(newBadge);
+                button.className = 'bg-gray-600 hover:bg-gray-700 text-white text-sm py-2 px-3 rounded-lg transition-colors';
+                button.title = 'Mark as incomplete';
+                button.innerHTML = '<i class="fas fa-undo"></i>';
+            }
+        }
+
+        // Update bookmark count
+        function updateBookmarkCount() {
+            const count = document.querySelectorAll('.bookmark-card').length;
+            const countElement = document.querySelector('span:contains("bookmarked recipes")');
+            if (countElement) {
+                countElement.textContent = `${count} bookmarked recipes`;
+            }
+        }
+
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const cuisineFilter = document.getElementById('cuisine-filter');
+            const searchInput = document.getElementById('search-input');
+            const bookmarkCards = document.querySelectorAll('.bookmark-card');
+
+            function filterBookmarks() {
+                const cuisineValue = cuisineFilter.value.toLowerCase();
+                const searchValue = searchInput.value.toLowerCase();
+
+                bookmarkCards.forEach(card => {
+                    const cardCuisine = card.dataset.cuisine;
+                    const cardText = card.textContent.toLowerCase();
+
+                    const cuisineMatch = !cuisineValue || cardCuisine === cuisineValue;
+                    const searchMatch = !searchValue || cardText.includes(searchValue);
+
+                    if (cuisineMatch && searchMatch) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            cuisineFilter.addEventListener('change', filterBookmarks);
+            searchInput.addEventListener('input', filterBookmarks);
+        });
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                document.getElementById('user-menu').classList.add('hidden');
+            }
+        });
+
+        // Close menus when clicking outside
+        document.addEventListener('click', function(event) {
+            const userMenu = document.getElementById('user-menu');
+            const userButton = event.target.closest('[onclick="toggleUserMenu()"]');
+            
+            if (!userButton && !userMenu.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

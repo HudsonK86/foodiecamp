@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin User Management - FoodieCamp</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <button onclick="toggleSidebar()" class="md:hidden text-gray-700 mr-3" title="Toggle sidebar">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp Admin</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisines</a>
+                    <a href="events.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" title="User menu">
+                            <img src="https://via.placeholder.com/24x24" alt="Admin" class="w-6 h-6 rounded-full mr-2">
+                            <span>Admin</span>
+                            <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div id="user-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-50">
+                            <a href="admin-dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                            <a href="admin-profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                            <div class="border-t border-gray-200"></div>
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-40 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cuisines</a>
+            <a href="events.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <div class="border-t border-gray-200 mt-2 pt-2">
+                <a href="admin-dashboard.html" class="block px-3 py-2 text-blue-600 font-medium">Dashboard</a>
+                <a href="admin-profile.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Profile</a>
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Logout</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Sidebar -->
+    <div class="sidebar bg-white shadow-lg fixed left-0 top-16 z-40">
+        <div class="p-4 border-b">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/80x80" alt="Admin" class="w-20 h-20 rounded-full mr-4">
+                <div>
+                    <span class="text-lg font-bold text-gray-800">Admin</span>
+                    <p class="text-sm text-gray-600">Administrator</p>
+                </div>
+            </div>
+        </div>
+        <nav class="mt-4">
+            <a href="admin-dashboard.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a href="admin-cuisine.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-utensils mr-3"></i>
+                Cuisine
+            </a>
+            <a href="admin-recipe.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-book mr-3"></i>
+                Recipe
+            </a>
+            <a href="admin-event.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-calendar mr-3"></i>
+                Event
+            </a>
+            <a href="admin-review.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-star mr-3"></i>
+                Review
+            </a>
+            <a href="admin-user.html" class="flex items-center px-4 py-3 text-gray-700 bg-primary-blue">
+                <i class="fas fa-users mr-3"></i>
+                User
+            </a>
+            <a href="admin-inquiry.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-envelope mr-3"></i>
+                Inquiry
+            </a>
+            <a href="admin-profile.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-cog mr-3"></i>
+                Profile
+            </a>
+        </nav>
+        <div class="absolute bottom-4 left-4 right-4">
+            <a href="index.html" class="flex items-center justify-center w-full px-4 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content bg-gray-50 min-h-screen">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">User Management</h1>
+            </div>
+            
+            <!-- Filter Controls -->
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <div class="grid md:grid-cols-4 gap-4">
+                    <!-- Status Filter -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Status Filter</label>
+                        <select id="statusFilter" onchange="filterUsers()" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="all">All Members</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="blocked">Blocked</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Role Filter -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Role Filter</label>
+                        <select id="roleFilter" onchange="filterUsers()" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="all">All Roles</option>
+                            <option value="member">Member</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Registration Date Filter -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Registration Date</label>
+                        <select id="dateFilter" onchange="filterUsers()" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="all">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                            <option value="year">This Year</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Search Bar -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Search Users</label>
+                        <div class="relative">
+                            <input type="text" id="searchInput" onkeyup="searchUsers()" placeholder="Search by name or email..." class="w-full p-3 pr-10 border border-gray-300 rounded-lg">
+                            <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="grid md:grid-cols-4 gap-6 mb-6">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-users text-3xl text-blue-600 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Total Users</h3>
+                            <p class="text-3xl font-bold text-blue-600">1,248</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-check text-3xl text-green-600 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Active Users</h3>
+                            <p class="text-3xl font-bold text-green-600">1,156</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-times text-3xl text-red-600 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Blocked Users</h3>
+                            <p class="text-3xl font-bold text-red-600">45</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-plus text-3xl text-purple-600 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">New This Month</h3>
+                            <p class="text-3xl font-bold text-purple-600">47</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Table -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div class="p-6 border-b">
+                    <h3 class="text-xl font-bold text-gray-800">All Users</h3>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registered</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Login</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody" class="bg-white divide-y divide-gray-200">
+                            <!-- Sample user data - Replace with dynamic content -->
+                            <tr class="user-row" data-status="active" data-role="member" data-name="Uncle Roger" data-email="uncle.roger@example.com">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900">Uncle Roger</div>
+                                            <div class="text-sm text-gray-500">Member</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">uncle.roger@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Member</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Dec 15, 2023</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2 hours ago</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button onclick="viewUser('uncle-roger')" class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button onclick="editUser('uncle-roger')" class="text-indigo-600 hover:text-indigo-900">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button onclick="blockUser('uncle-roger')" class="text-red-600 hover:text-red-900">
+                                        <i class="fas fa-ban"></i> Block
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="user-row" data-status="active" data-role="member" data-name="Gordon Ramsay" data-email="gordon.ramsay@example.com">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900">Gordon Ramsay</div>
+                                            <div class="text-sm text-gray-500">Member</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">gordon.ramsay@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Member</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jan 10, 2024</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1 day ago</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button onclick="viewUser('gordon-ramsay')" class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button onclick="editUser('gordon-ramsay')" class="text-indigo-600 hover:text-indigo-900">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button onclick="blockUser('gordon-ramsay')" class="text-red-600 hover:text-red-900">
+                                        <i class="fas fa-ban"></i> Block
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="user-row" data-status="blocked" data-role="member" data-name="Jamie Oliver" data-email="jamie.oliver@example.com">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900">Jamie Oliver</div>
+                                            <div class="text-sm text-gray-500">Member</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">jamie.oliver@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Blocked</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Member</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Nov 22, 2023</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1 week ago</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button onclick="viewUser('jamie-oliver')" class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button onclick="editUser('jamie-oliver')" class="text-indigo-600 hover:text-indigo-900">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button onclick="unblockUser('jamie-oliver')" class="text-green-600 hover:text-green-900">
+                                        <i class="fas fa-check"></i> Unblock
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="user-row" data-status="pending" data-role="member" data-name="Anthony Bourdain" data-email="anthony.bourdain@example.com">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900">Anthony Bourdain</div>
+                                            <div class="text-sm text-gray-500">Member</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">anthony.bourdain@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Member</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jun 25, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Never</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button onclick="viewUser('anthony-bourdain')" class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button onclick="editUser('anthony-bourdain')" class="text-indigo-600 hover:text-indigo-900">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button onclick="activateUser('anthony-bourdain')" class="text-green-600 hover:text-green-900">
+                                        <i class="fas fa-check"></i> Activate
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="user-row" data-status="active" data-role="admin" data-name="Julia Child" data-email="julia.child@example.com">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900">Julia Child</div>
+                                            <div class="text-sm text-gray-500">Admin</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">julia.child@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Admin</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mar 5, 2024</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">5 hours ago</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button onclick="viewUser('julia-child')" class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button onclick="editUser('julia-child')" class="text-indigo-600 hover:text-indigo-900">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button onclick="blockUser('julia-child')" class="text-red-600 hover:text-red-900">
+                                        <i class="fas fa-ban"></i> Block
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200">
+                    <div class="flex-1 flex justify-between sm:hidden">
+                        <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                            Previous
+                        </button>
+                        <button class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                            Next
+                        </button>
+                    </div>
+                    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-sm text-gray-700">
+                                Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">1,248</span> results
+                            </p>
+                        </div>
+                        <div>
+                            <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+                                <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="bg-blue-50 border-blue-500 text-blue-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">1</button>
+                                <button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">2</button>
+                                <button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">3</button>
+                                <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View User Modal -->
+    <div id="viewUserModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-medium text-gray-900">User Profile</h3>
+                    <button onclick="closeViewUserModal()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div class="space-y-6">
+                    <!-- Profile Picture and Basic Info -->
+                    <div class="flex items-center space-x-6">
+                        <img id="viewUserImage" src="https://via.placeholder.com/120x120" alt="User" class="w-30 h-30 rounded-full">
+                        <div>
+                            <h4 id="viewUserName" class="text-xl font-bold text-gray-900">Uncle Roger</h4>
+                            <p id="viewUserRole" class="text-gray-600">Chef</p>
+                            <p id="viewUserStatus" class="text-sm">
+                                <span class="px-2 py-1 rounded-full bg-green-100 text-green-800">Active</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- User Details -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-medium text-gray-900 mb-3">Personal Information</h5>
+                            <div class="space-y-2">
+                                <p><span class="font-medium">Email:</span> <span id="viewUserEmail">uncle.roger@example.com</span></p>
+                                <p><span class="font-medium">Phone:</span> <span id="viewUserPhone">+60 12-345-6789</span></p>
+                                <p><span class="font-medium">Location:</span> <span id="viewUserLocation">Kuala Lumpur, Malaysia</span></p>
+                                <p><span class="font-medium">Date of Birth:</span> <span id="viewUserDob">March 15, 1985</span></p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h5 class="font-medium text-gray-900 mb-3">Account Information</h5>
+                            <div class="space-y-2">
+                                <p><span class="font-medium">Registered Date:</span> <span id="viewUserRegistered">December 15, 2023</span></p>
+                                <p><span class="font-medium">Last Login:</span> <span id="viewUserLastLogin">2 hours ago</span></p>
+                                <p><span class="font-medium">Total Recipes:</span> <span id="viewUserRecipes">45</span></p>
+                                <p><span class="font-medium">Total Events:</span> <span id="viewUserEvents">12</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button onclick="closeViewUserModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">
+                        Close
+                    </button>
+                    <button onclick="editUserFromView()" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                        Edit User
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div id="editUserModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-medium text-gray-900">Edit User Email</h3>
+                    <button onclick="closeEditUserModal()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <form id="editUserForm">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                        <input type="text" id="editUserNameField" readonly class="w-full p-3 border border-gray-300 rounded-md bg-gray-100">
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Current Email</label>
+                        <input type="email" id="editCurrentEmail" readonly class="w-full p-3 border border-gray-300 rounded-md bg-gray-100">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">New Email</label>
+                        <input type="email" id="editNewEmail" required class="w-full p-3 border border-gray-300 rounded-md" placeholder="Enter new email address">
+                        <p class="text-sm text-gray-500 mt-1">User will receive a verification email at the new address.</p>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" onclick="closeEditUserModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            Update Email
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 ml-0 md:ml-280">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentUserId = null;
+
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        function toggleUserMenu() {
+            const userMenu = document.getElementById('user-menu');
+            userMenu.classList.toggle('hidden');
+        }
+
+        function filterUsers() {
+            const statusFilter = document.getElementById('statusFilter').value;
+            const roleFilter = document.getElementById('roleFilter').value;
+            const dateFilter = document.getElementById('dateFilter').value;
+            const rows = document.querySelectorAll('.user-row');
+
+            rows.forEach(row => {
+                let showRow = true;
+
+                // Filter by status
+                if (statusFilter !== 'all' && row.dataset.status !== statusFilter) {
+                    showRow = false;
+                }
+
+                // Filter by role
+                if (roleFilter !== 'all' && row.dataset.role !== roleFilter) {
+                    showRow = false;
+                }
+
+                // Date filter logic would be implemented here with actual dates
+                // For now, showing all for date filter
+
+                row.style.display = showRow ? '' : 'none';
+            });
+        }
+
+        function searchUsers() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('.user-row');
+
+            rows.forEach(row => {
+                const name = row.dataset.name.toLowerCase();
+                const email = row.dataset.email.toLowerCase();
+                
+                if (name.includes(searchTerm) || email.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function viewUser(userId) {
+            currentUserId = userId;
+            
+            // Sample data - replace with actual data from API
+            const userData = getUserData(userId);
+            
+            document.getElementById('viewUserImage').src = userData.image;
+            document.getElementById('viewUserName').textContent = userData.name;
+            document.getElementById('viewUserRole').textContent = userData.role;
+            document.getElementById('viewUserEmail').textContent = userData.email;
+            document.getElementById('viewUserPhone').textContent = userData.phone;
+            document.getElementById('viewUserLocation').textContent = userData.location;
+            document.getElementById('viewUserDob').textContent = userData.dob;
+            document.getElementById('viewUserRegistered').textContent = userData.registered;
+            document.getElementById('viewUserLastLogin').textContent = userData.lastLogin;
+            document.getElementById('viewUserRecipes').textContent = userData.recipes;
+            document.getElementById('viewUserEvents').textContent = userData.events;
+            
+            // Update status
+            const statusEl = document.getElementById('viewUserStatus');
+            statusEl.innerHTML = `<span class="px-2 py-1 rounded-full ${getStatusClass(userData.status)}">${userData.status}</span>`;
+            
+            document.getElementById('viewUserModal').classList.remove('hidden');
+        }
+
+        function closeViewUserModal() {
+            document.getElementById('viewUserModal').classList.add('hidden');
+        }
+
+        function editUser(userId) {
+            currentUserId = userId;
+            
+            const userData = getUserData(userId);
+            
+            document.getElementById('editUserNameField').value = userData.name;
+            document.getElementById('editCurrentEmail').value = userData.email;
+            document.getElementById('editNewEmail').value = '';
+            
+            document.getElementById('editUserModal').classList.remove('hidden');
+        }
+
+        function editUserFromView() {
+            closeViewUserModal();
+            editUser(currentUserId);
+        }
+
+        function closeEditUserModal() {
+            document.getElementById('editUserModal').classList.add('hidden');
+        }
+
+        function blockUser(userId) {
+            if (confirm('Are you sure you want to block this user?')) {
+                // API call to block user
+                console.log('Blocking user:', userId);
+                // Update UI
+                updateUserStatus(userId, 'blocked');
+                alert('User has been blocked successfully.');
+            }
+        }
+
+        function unblockUser(userId) {
+            if (confirm('Are you sure you want to unblock this user?')) {
+                // API call to unblock user
+                console.log('Unblocking user:', userId);
+                // Update UI
+                updateUserStatus(userId, 'active');
+                alert('User has been unblocked successfully.');
+            }
+        }
+
+        function activateUser(userId) {
+            if (confirm('Are you sure you want to activate this user?')) {
+                // API call to activate user
+                console.log('Activating user:', userId);
+                // Update UI
+                updateUserStatus(userId, 'active');
+                alert('User has been activated successfully.');
+            }
+        }
+
+        function exportUsers() {
+            // Implement user export functionality
+            alert('Exporting users data...');
+        }
+
+        // Helper functions
+        function getUserData(userId) {
+            // Sample data - replace with actual API call
+            const sampleData = {
+                'uncle-roger': {
+                    name: 'Uncle Roger',
+                    email: 'uncle.roger@example.com',
+                    phone: '+60 12-345-6789',
+                    location: 'Kuala Lumpur, Malaysia',
+                    dob: 'March 15, 1985',
+                    registered: 'December 15, 2023',
+                    lastLogin: '2 hours ago',
+                    status: 'active',
+                    role: 'Member',
+                    recipes: '45',
+                    events: '12',
+                    image: 'https://via.placeholder.com/120x120'
+                },
+                'gordon-ramsay': {
+                    name: 'Gordon Ramsay',
+                    email: 'gordon.ramsay@example.com',
+                    phone: '+44 20-7946-0958',
+                    location: 'London, UK',
+                    dob: 'November 8, 1966',
+                    registered: 'January 10, 2024',
+                    lastLogin: '1 day ago',
+                    status: 'active',
+                    role: 'Member',
+                    recipes: '28',
+                    events: '8',
+                    image: 'https://via.placeholder.com/120x120'
+                },
+                'jamie-oliver': {
+                    name: 'Jamie Oliver',
+                    email: 'jamie.oliver@example.com',
+                    phone: '+44 20-1234-5678',
+                    location: 'London, UK',
+                    dob: 'May 27, 1975',
+                    registered: 'November 22, 2023',
+                    lastLogin: '1 week ago',
+                    status: 'blocked',
+                    role: 'Member',
+                    recipes: '15',
+                    events: '3',
+                    image: 'https://via.placeholder.com/120x120'
+                },
+                'anthony-bourdain': {
+                    name: 'Anthony Bourdain',
+                    email: 'anthony.bourdain@example.com',
+                    phone: '+1 555-0123',
+                    location: 'New York, USA',
+                    dob: 'June 25, 1956',
+                    registered: 'June 25, 2025',
+                    lastLogin: 'Never',
+                    status: 'pending',
+                    role: 'Member',
+                    recipes: '0',
+                    events: '0',
+                    image: 'https://via.placeholder.com/120x120'
+                },
+                'julia-child': {
+                    name: 'Julia Child',
+                    email: 'julia.child@example.com',
+                    phone: '+1 555-9876',
+                    location: 'California, USA',
+                    dob: 'August 15, 1912',
+                    registered: 'March 5, 2024',
+                    lastLogin: '5 hours ago',
+                    status: 'active',
+                    role: 'Admin',
+                    recipes: '78',
+                    events: '25',
+                    image: 'https://via.placeholder.com/120x120'
+                }
+            };
+            
+            return sampleData[userId] || sampleData['uncle-roger'];
+        }
+
+        function getStatusClass(status) {
+            switch(status) {
+                case 'active': return 'bg-green-100 text-green-800';
+                case 'blocked': return 'bg-red-100 text-red-800';
+                case 'pending': return 'bg-yellow-100 text-yellow-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        function updateUserStatus(userId, newStatus) {
+            // Find the user row and update the status
+            const rows = document.querySelectorAll('.user-row');
+            rows.forEach(row => {
+                if (row.querySelector('button[onclick*="' + userId + '"]')) {
+                    row.dataset.status = newStatus;
+                    const statusEl = row.querySelector('span[class*="bg-"]');
+                    statusEl.className = `px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusClass(newStatus)}`;
+                    statusEl.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+                    
+                    // Update action buttons
+                    const actionsCell = row.querySelector('td:last-child');
+                    updateActionButtons(actionsCell, userId, newStatus);
+                }
+            });
+        }
+
+        function updateActionButtons(actionsCell, userId, status) {
+            let actionButtons = `
+                <button onclick="viewUser('${userId}')" class="text-blue-600 hover:text-blue-900">
+                    <i class="fas fa-eye"></i> View
+                </button>
+                <button onclick="editUser('${userId}')" class="text-indigo-600 hover:text-indigo-900">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+            `;
+            
+            if (status === 'blocked') {
+                actionButtons += `
+                    <button onclick="unblockUser('${userId}')" class="text-green-600 hover:text-green-900">
+                        <i class="fas fa-check"></i> Unblock
+                    </button>
+                `;
+            } else if (status === 'pending') {
+                actionButtons += `
+                    <button onclick="activateUser('${userId}')" class="text-green-600 hover:text-green-900">
+                        <i class="fas fa-check"></i> Activate
+                    </button>
+                `;
+            } else {
+                actionButtons += `
+                    <button onclick="blockUser('${userId}')" class="text-red-600 hover:text-red-900">
+                        <i class="fas fa-ban"></i> Block
+                    </button>
+                `;
+            }
+            
+            actionsCell.innerHTML = actionButtons;
+        }
+
+        // Handle edit user form submission
+        document.getElementById('editUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newEmail = document.getElementById('editNewEmail').value;
+            const currentEmail = document.getElementById('editCurrentEmail').value;
+            
+            if (newEmail === currentEmail) {
+                alert('New email must be different from current email.');
+                return;
+            }
+            
+            // API call to update user email
+            console.log('Updating user email:', currentUserId, newEmail);
+            
+            alert('User email has been updated successfully. A verification email has been sent to the new address.');
+            closeEditUserModal();
+        });
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const viewModal = document.getElementById('viewUserModal');
+            const editModal = document.getElementById('editUserModal');
+            
+            if (event.target === viewModal) {
+                closeViewUserModal();
+            }
+            if (event.target === editModal) {
+                closeEditUserModal();
+            }
+        });
+
+        // Close menus when clicking outside
+        document.addEventListener('click', function(event) {
+            const userMenu = document.getElementById('user-menu');
+            const userButton = event.target.closest('[onclick="toggleUserMenu()"]');
+            
+            if (!userButton && !userMenu.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                document.getElementById('user-menu').classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

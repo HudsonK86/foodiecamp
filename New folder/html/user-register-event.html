@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Event Registrations - FoodieCamp</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/user-dashboard.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <button onclick="toggleSidebar()" class="md:hidden text-gray-700 mr-3" title="Toggle sidebar">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisines</a>
+                    <a href="events.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" title="User menu">
+                            <img src="https://via.placeholder.com/24x24" alt="Uncle Roger" class="w-6 h-6 rounded-full mr-2">
+                            <span>Uncle Roger</span>
+                            <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div id="user-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-50">
+                            <a href="user-dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                            <div class="border-t border-gray-200"></div>
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-40 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cuisines</a>
+            <a href="events.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <div class="border-t border-gray-200 mt-2 pt-2">
+                <a href="user-dashboard.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Dashboard</a>
+                <a href="user-recipe.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">My Recipes</a>
+                <a href="user-bookmark.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Bookmarks</a>
+                <a href="user-event.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">My Events</a>
+                <a href="user-register-event.html" class="block px-3 py-2 text-blue-600 font-medium">Event Registrations</a>
+                <a href="user-notification.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Notifications</a>
+                <a href="post-recipe.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Post Recipe</a>
+                <a href="post-event.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Post Event</a>
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Logout</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- User Sidebar -->
+    <div class="sidebar bg-white shadow-lg fixed left-0 top-16 z-40">
+        <div class="p-4 border-b">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/80x80" alt="Uncle Roger" class="w-20 h-20 rounded-full mr-4">
+                <div>
+                    <span class="text-lg font-bold text-gray-800">Uncle Roger</span>
+                </div>
+            </div>
+        </div>
+        <nav class="mt-4">
+            <a href="user-dashboard.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a href="user-recipe.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-book mr-3"></i>
+                Recipe
+            </a>
+            <a href="user-bookmark.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-bookmark mr-3"></i>
+                Bookmark
+            </a>
+            <a href="user-event.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-calendar mr-3"></i>
+                Event
+            </a>
+            <a href="user-register-event.html" class="flex items-center px-4 py-3 text-gray-700 bg-primary-blue">
+                <i class="fas fa-calendar-check mr-3"></i>
+                Event Registration
+            </a>
+            <a href="user-notification.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-bell mr-3"></i>
+                Notification
+                <span class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full">5</span>
+            </a>
+            <a href="user-profile.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-cog mr-3"></i>
+                Profile
+            </a>
+        </nav>
+        <div class="absolute bottom-16 left-4 right-4">
+            <a href="index.html" class="flex items-center justify-center w-full px-4 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                Logout
+            </a>
+        </div>  
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content bg-gray-50 min-h-screen">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Event Registrations</h1>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-600">8 events registered</span>
+                    <a href="events.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-search mr-2"></i>
+                        Browse Events
+                    </a>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Event Time Filter -->
+                    <div>
+                        <label for="time-filter" class="block text-sm font-medium text-gray-700 mb-2">Event Status</label>
+                        <select id="time-filter" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">All Events</option>
+                            <option value="upcoming">Upcoming Events</option>
+                            <option value="past">Past Events</option>
+                        </select>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div>
+                        <label for="search-input" class="block text-sm font-medium text-gray-700 mb-2">Search Events</label>
+                        <div class="relative">
+                            <input type="text" id="search-input" placeholder="Search by event name, location..." class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="events-grid">
+                <!-- Event Card 1 - Upcoming -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden event-card" data-type="upcoming">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop" alt="Cooking Workshop" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                Registered
+                            </span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-calendar mr-1"></i>
+                                Upcoming
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Chinese Dumpling Workshop</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            Kuala Lumpur, Malaysia
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Jan 15, 2025 • 2:00 PM - 5:00 PM
+                        </p>
+                        <p class="text-sm text-gray-500 mb-3">Learn to make authentic Chinese dumplings from scratch with traditional techniques...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-medium text-gray-700">
+                                <i class="fas fa-users mr-1"></i>
+                                25/30 participants
+                            </span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="event-details.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors" title="View event details">
+                                <i class="fas fa-eye mr-1"></i>
+                                View Details
+                            </a>
+                            <button onclick="cancelRegistration(this)" class="bg-red-600 hover:bg-red-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Cancel registration">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 2 - Upcoming -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden event-card" data-type="upcoming">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop" alt="Food Festival" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                Registered
+                            </span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-calendar mr-1"></i>
+                                Upcoming
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Asian Street Food Festival</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            Petaling Jaya, Malaysia
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Feb 20, 2025 • 6:00 PM - 11:00 PM
+                        </p>
+                        <p class="text-sm text-gray-500 mb-3">Experience the best Asian street food in one location with live cooking demonstrations...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-medium text-gray-700">
+                                <i class="fas fa-users mr-1"></i>
+                                142/200 participants
+                            </span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="event-details.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors" title="View event details">
+                                <i class="fas fa-eye mr-1"></i>
+                                View Details
+                            </a>
+                            <button onclick="cancelRegistration(this)" class="bg-red-600 hover:bg-red-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Cancel registration">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 3 - Upcoming -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden event-card" data-type="upcoming">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop" alt="Baking Class" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                Registered
+                            </span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-calendar mr-1"></i>
+                                Upcoming
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Thai Curry Cooking Class</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            Shah Alam, Malaysia
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Feb 10, 2025 • 3:00 PM - 6:00 PM
+                        </p>
+                        <p class="text-sm text-gray-500 mb-3">Master the art of Thai curry making with authentic ingredients and traditional methods...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-medium text-gray-700">
+                                <i class="fas fa-users mr-1"></i>
+                                18/20 participants
+                            </span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="event-details.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors" title="View event details">
+                                <i class="fas fa-eye mr-1"></i>
+                                View Details
+                            </a>
+                            <button onclick="cancelRegistration(this)" class="bg-red-600 hover:bg-red-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Cancel registration">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 4 - Upcoming (Waitlist) -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden event-card" data-type="upcoming">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop" alt="Wine Tasting" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-orange-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-clock mr-1"></i>
+                                Waitlist
+                            </span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-calendar mr-1"></i>
+                                Upcoming
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Italian Pasta Making Workshop</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            Mont Kiara, Malaysia
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Mar 5, 2025 • 10:00 AM - 2:00 PM
+                        </p>
+                        <p class="text-sm text-gray-500 mb-3">Learn traditional Italian pasta making techniques from a certified chef...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-medium text-gray-700">
+                                <i class="fas fa-users mr-1"></i>
+                                15/15 participants (Full)
+                            </span>
+                            <span class="text-sm text-orange-600 font-medium">
+                                <i class="fas fa-list mr-1"></i>
+                                Position #3
+                            </span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="event-details.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors" title="View event details">
+                                <i class="fas fa-eye mr-1"></i>
+                                View Details
+                            </a>
+                            <button onclick="cancelRegistration(this)" class="bg-red-600 hover:bg-red-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Cancel registration">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 5 - Past -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden event-card" data-type="past">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop" alt="Baking Workshop" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-gray-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-history mr-1"></i>
+                                Past
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">French Pastry Baking Workshop</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            Kuala Lumpur, Malaysia
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Dec 15, 2024 • 10:00 AM - 3:00 PM
+                        </p>
+                        <p class="text-sm text-gray-500 mb-3">Learn to create classic French pastries including croissants, macarons, and éclairs...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-medium text-gray-700">
+                                <i class="fas fa-users mr-1"></i>
+                                18 participants attended
+                            </span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="event-details.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors" title="View event details">
+                                <i class="fas fa-eye mr-1"></i>
+                                View Details
+                            </a>
+                            <button class="bg-gray-400 text-white text-sm py-2 px-3 rounded-lg cursor-not-allowed" disabled title="Past event">
+                                <i class="fas fa-ban"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 6 - Past -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden event-card" data-type="past">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop" alt="Food Festival" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-gray-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-history mr-1"></i>
+                                Past
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Malaysian Food Heritage Festival</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            Kuala Lumpur, Malaysia
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Nov 20, 2024 • 5:00 PM - 11:00 PM
+                        </p>
+                        <p class="text-sm text-gray-500 mb-3">Celebrate Malaysia's diverse food heritage with traditional recipes and cultural performances...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-medium text-gray-700">
+                                <i class="fas fa-users mr-1"></i>
+                                350 participants attended
+                            </span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="event-details.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors" title="View event details">
+                                <i class="fas fa-eye mr-1"></i>
+                                View Details
+                            </a>
+                            <button class="bg-gray-400 text-white text-sm py-2 px-3 rounded-lg cursor-not-allowed" disabled title="Past event">
+                                <i class="fas fa-ban"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 7 - Past (Missed) -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden event-card" data-type="past">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop" alt="Cooking Class" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-times mr-1"></i>
+                                Missed
+                            </span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-gray-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-history mr-1"></i>
+                                Past
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Japanese Sushi Making Workshop</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            Bangsar, Malaysia
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Oct 8, 2024 • 1:00 PM - 5:00 PM
+                        </p>
+                        <p class="text-sm text-gray-500 mb-3">Learn the art of sushi making from a master chef with traditional Japanese techniques...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-medium text-gray-700">
+                                <i class="fas fa-users mr-1"></i>
+                                12 participants attended
+                            </span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="event-details.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors" title="View event details">
+                                <i class="fas fa-eye mr-1"></i>
+                                View Details
+                            </a>
+                            <button class="bg-gray-400 text-white text-sm py-2 px-3 rounded-lg cursor-not-allowed" disabled title="Past event">
+                                <i class="fas fa-ban"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Card 8 - Upcoming -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden event-card" data-type="upcoming">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop" alt="Food Festival" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2">
+                            <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                Registered
+                            </span>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                <i class="fas fa-calendar mr-1"></i>
+                                Upcoming
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Annual Food Heritage Festival</h3>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            Kuala Lumpur, Malaysia
+                        </p>
+                        <p class="text-sm text-gray-600 mb-2">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Aug 31, 2025 • 10:00 AM - 10:00 PM
+                        </p>
+                        <p class="text-sm text-gray-500 mb-3">Celebrate Malaysia's diverse food heritage with traditional recipes and cultural performances...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-medium text-gray-700">
+                                <i class="fas fa-users mr-1"></i>
+                                287/500 participants
+                            </span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <a href="event-details.html" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg text-center transition-colors" title="View event details">
+                                <i class="fas fa-eye mr-1"></i>
+                                View Details
+                            </a>
+                            <button onclick="cancelRegistration(this)" class="bg-red-600 hover:bg-red-700 text-white text-sm py-2 px-3 rounded-lg transition-colors" title="Cancel registration">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center mt-8">
+                <nav class="flex space-x-2">
+                    <button class="px-3 py-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors" disabled title="Previous page">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="px-3 py-2 bg-blue-600 text-white rounded-md">1</button>
+                    <button class="px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">2</button>
+                    <button class="px-3 py-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors" title="Next page">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 ml-0 md:ml-280">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        function toggleUserMenu() {
+            const userMenu = document.getElementById('user-menu');
+            userMenu.classList.toggle('hidden');
+        }
+
+        function toggleProfileMenu(type) {
+            const menu = document.getElementById(type + '-profile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Cancel registration function
+        function cancelRegistration(button) {
+            const card = button.closest('.event-card');
+            const eventTitle = card.querySelector('h3').textContent;
+            
+            if (confirm(`Are you sure you want to cancel your registration for "${eventTitle}"?`)) {
+                card.style.transition = 'opacity 0.3s ease';
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    card.remove();
+                    updateEventCount();
+                }, 300);
+            }
+        }
+
+        // Update event count
+        function updateEventCount() {
+            const count = document.querySelectorAll('.event-card').length;
+            const countElement = document.querySelector('span:contains("events registered")');
+            if (countElement) {
+                countElement.textContent = `${count} events registered`;
+            }
+        }
+
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const timeFilter = document.getElementById('time-filter');
+            const searchInput = document.getElementById('search-input');
+            const eventCards = document.querySelectorAll('.event-card');
+
+            function filterEvents() {
+                const timeValue = timeFilter.value.toLowerCase();
+                const searchValue = searchInput.value.toLowerCase();
+
+                eventCards.forEach(card => {
+                    const cardType = card.dataset.type;
+                    const cardText = card.textContent.toLowerCase();
+
+                    const timeMatch = !timeValue || cardType === timeValue;
+                    const searchMatch = !searchValue || cardText.includes(searchValue);
+
+                    if (timeMatch && searchMatch) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            timeFilter.addEventListener('change', filterEvents);
+            searchInput.addEventListener('input', filterEvents);
+        });
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                document.getElementById('user-menu').classList.add('hidden');
+            }
+        });
+
+        // Close menus when clicking outside
+        document.addEventListener('click', function(event) {
+            const userMenu = document.getElementById('user-menu');
+            const userButton = event.target.closest('[onclick="toggleUserMenu()"]');
+            
+            if (!userButton && !userMenu.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieCamp - Master the Art of Cooking</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisine</a>
+                    <a href="events.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Login</a>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700" title="Toggle menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-30 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cuisine</a>
+            <a href="events.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <a href="login.html" class="block w-full text-left px-3 py-2 text-blue-600 font-medium">Login</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <div class="hero-bg py-20">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h1 class="text-5xl font-bold text-gray-800 mb-6">Master the Art of Cooking</h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Learn authentic recipes from around the world with expert guidance and join our community of passionate food lovers.</p>
+                <a href="register.html" class="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition inline-block">
+                    Become a Member Now!
+                </a>
+            </div>
+        </div>
+
+        <!-- Cuisine Section -->
+        <div class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Popular Cuisines</h2>
+                <div class="grid md:grid-cols-3 gap-8" id="cuisine-container">
+                    <!-- Cuisine Card Template -->
+                    <div class="cuisine-card bg-white rounded-xl shadow-lg card-hover transition-all duration-300" data-cuisine-id="1">
+                        <img src="https://images.unsplash.com/photo-1617093700631-8b3d9b4e5e6f?w=400&h=250&fit=crop" alt="Chinese Cuisine" class="cuisine-image w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6">
+                            <h3 class="cuisine-name text-xl font-semibold text-gray-800 mb-2">Chinese</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="cuisine-rating flex text-yellow-400" data-rating="4.5">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="cuisine-rating-value ml-2 text-gray-600">4.5</span>
+                            </div>
+                            <a href="cuisines.html" class="cuisine-link w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="cuisine-card bg-white rounded-xl shadow-lg card-hover transition-all duration-300" data-cuisine-id="2">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03246963d17a?w=400&h=250&fit=crop" alt="Malay Cuisine" class="cuisine-image w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6">
+                            <h3 class="cuisine-name text-xl font-semibold text-gray-800 mb-2">Malay</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="cuisine-rating flex text-yellow-400" data-rating="4.8">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="cuisine-rating-value ml-2 text-gray-600">4.8</span>
+                            </div>
+                            <a href="cuisines.html" class="cuisine-link w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="cuisine-card bg-white rounded-xl shadow-lg card-hover transition-all duration-300" data-cuisine-id="3">
+                        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=250&fit=crop" alt="Indian Cuisine" class="cuisine-image w-full h-48 object-cover rounded-t-xl">
+                        <div class="p-6">
+                            <h3 class="cuisine-name text-xl font-semibold text-gray-800 mb-2">Indian</h3>
+                            <div class="flex items-center mb-4">
+                                <div class="cuisine-rating flex text-yellow-400" data-rating="4.2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="cuisine-rating-value ml-2 text-gray-600">4.2</span>
+                            </div>
+                            <a href="cuisines.html" class="cuisine-link w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Section -->
+        <div class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Upcoming Events</h2>
+                <div class="grid md:grid-cols-3 gap-8" id="events-container">
+                    <!-- Event Card Template -->
+                    <div class="event-card bg-white rounded-xl shadow-lg card-hover transition-all duration-300" data-event-id="1">
+                        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=200&fit=crop" alt="Asian Fusion Workshop" class="event-image w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-6">
+                            <h3 class="event-title text-xl font-semibold text-gray-800 mb-3">Asian Fusion Workshop</h3>
+                            <div class="event-details space-y-2 text-sm mb-4">
+                                <p class="event-date text-gray-600">
+                                    <i class="fas fa-calendar mr-2 text-blue-600"></i>
+                                    <span class="date-value">Dec 15, 2024</span>
+                                </p>
+                                <p class="event-time text-gray-600">
+                                    <i class="fas fa-clock mr-2 text-blue-600"></i>
+                                    <span class="time-value">2:00 PM - 5:00 PM</span>
+                                </p>
+                                <p class="event-chef text-gray-600">
+                                    <i class="fas fa-user mr-2 text-blue-600"></i>
+                                    <span class="chef-name">Chef Maria Rodriguez</span>
+                                </p>
+                                <p class="event-participants text-gray-600">
+                                    <i class="fas fa-users mr-2 text-blue-600"></i>
+                                    <span class="participant-count">15</span> participants
+                                </p>
+                            </div>
+                            <div class="event-actions">
+                                <a href="events.html" class="event-link w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                                    Learn More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card bg-white rounded-xl shadow-lg card-hover transition-all duration-300" data-event-id="2">
+                        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&h=200&fit=crop" alt="French Pastry Masterclass" class="event-image w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-6">
+                            <h3 class="event-title text-xl font-semibold text-gray-800 mb-3">French Pastry Masterclass</h3>
+                            <div class="event-details space-y-2 text-sm mb-4">
+                                <p class="event-date text-gray-600">
+                                    <i class="fas fa-calendar mr-2 text-blue-600"></i>
+                                    <span class="date-value">Dec 18, 2024</span>
+                                </p>
+                                <p class="event-time text-gray-600">
+                                    <i class="fas fa-clock mr-2 text-blue-600"></i>
+                                    <span class="time-value">10:00 AM - 2:00 PM</span>
+                                </p>
+                                <p class="event-chef text-gray-600">
+                                    <i class="fas fa-user mr-2 text-blue-600"></i>
+                                    <span class="chef-name">Chef Pierre Dubois</span>
+                                </p>
+                                <p class="event-participants text-gray-600">
+                                    <i class="fas fa-users mr-2 text-blue-600"></i>
+                                    <span class="participant-count">12</span> participants
+                                </p>
+                            </div>
+                            <div class="event-actions">
+                                <a href="events.html" class="event-link w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                                    Learn More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card bg-white rounded-xl shadow-lg card-hover transition-all duration-300" data-event-id="3">
+                        <img src="https://images.unsplash.com/photo-1556909195-f4d3aa346b8d?w=400&h=200&fit=crop" alt="Healthy Mediterranean" class="event-image w-full h-40 object-cover rounded-t-xl">
+                        <div class="p-6">
+                            <h3 class="event-title text-xl font-semibold text-gray-800 mb-3">Healthy Mediterranean</h3>
+                            <div class="event-details space-y-2 text-sm mb-4">
+                                <p class="event-date text-gray-600">
+                                    <i class="fas fa-calendar mr-2 text-blue-600"></i>
+                                    <span class="date-value">Dec 20, 2024</span>
+                                </p>
+                                <p class="event-time text-gray-600">
+                                    <i class="fas fa-clock mr-2 text-blue-600"></i>
+                                    <span class="time-value">3:00 PM - 6:00 PM</span>
+                                </p>
+                                <p class="event-chef text-gray-600">
+                                    <i class="fas fa-user mr-2 text-blue-600"></i>
+                                    <span class="chef-name">Chef Sofia Kostas</span>
+                                </p>
+                                <p class="event-participants text-gray-600">
+                                    <i class="fas fa-users mr-2 text-blue-600"></i>
+                                    <span class="participant-count">20</span> participants
+                                </p>
+                            </div>
+                            <div class="event-actions">
+                                <a href="events.html" class="event-link w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                                    Learn More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-6">Ready to Start Your Culinary Journey?</h2>
+                <p class="text-xl mb-8">Join thousands of cooking enthusiasts and learn from professional chefs around the world.</p>
+                <a href="contact.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition inline-block">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

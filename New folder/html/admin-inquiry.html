@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Inquiry Management - FoodieCamp</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <button onclick="toggleSidebar()" class="md:hidden text-gray-700 mr-3" title="Toggle sidebar">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp Admin</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisines</a>
+                    <a href="events.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" title="User menu">
+                            <img src="https://via.placeholder.com/24x24" alt="Admin" class="w-6 h-6 rounded-full mr-2">
+                            <span>Admin</span>
+                            <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div id="user-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-50">
+                            <a href="admin-dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                            <a href="admin-profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                            <div class="border-t border-gray-200"></div>
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-40 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cuisines</a>
+            <a href="events.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <div class="border-t border-gray-200 mt-2 pt-2">
+                <a href="admin-dashboard.html" class="block px-3 py-2 text-blue-600 font-medium">Dashboard</a>
+                <a href="admin-profile.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Profile</a>
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Logout</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Sidebar -->
+    <div class="sidebar bg-white shadow-lg fixed left-0 top-16 z-40">
+        <div class="p-4 border-b">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/80x80" alt="Admin" class="w-20 h-20 rounded-full mr-4">
+                <div>
+                    <span class="text-lg font-bold text-gray-800">Admin</span>
+                    <p class="text-sm text-gray-600">Administrator</p>
+                </div>
+            </div>
+        </div>
+        <nav class="mt-4">
+            <a href="admin-dashboard.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a href="admin-cuisine.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-utensils mr-3"></i>
+                Cuisine
+            </a>
+            <a href="admin-recipe.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-book mr-3"></i>
+                Recipe
+            </a>
+            <a href="admin-event.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-calendar mr-3"></i>
+                Event
+            </a>
+            <a href="admin-review.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-star mr-3"></i>
+                Review
+            </a>
+            <a href="admin-user.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-users mr-3"></i>
+                User
+            </a>
+            <a href="admin-inquiry.html" class="flex items-center px-4 py-3 text-gray-700 bg-primary-blue">
+                <i class="fas fa-envelope mr-3"></i>
+                Inquiry
+            </a>
+            <a href="admin-profile.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-cog mr-3"></i>
+                Profile
+            </a>
+        </nav>
+        <div class="absolute bottom-4 left-4 right-4">
+            <a href="index.html" class="flex items-center justify-center w-full px-4 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content bg-gray-50 min-h-screen">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Inquiry Management</h1>
+            </div>
+            
+            <!-- Filter Controls -->
+            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                <div class="grid md:grid-cols-4 gap-4">
+                    <!-- Status Filter -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Status Filter</label>
+                        <select id="statusFilter" onchange="filterInquiries()" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="all">All Inquiries</option>
+                            <option value="pending">Pending</option>
+                            <option value="solved">Solved</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Type Filter -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Type Filter</label>
+                        <select id="typeFilter" onchange="filterInquiries()" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="all">All Types</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="recipe">Recipe Issue</option>
+                            <option value="account">Account Support</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="bug">Bug Report</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Date Filter -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Date Filter</label>
+                        <select id="dateFilter" onchange="filterInquiries()" class="w-full p-3 border border-gray-300 rounded-lg">
+                            <option value="all">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Search Bar -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Search Inquiries</label>
+                        <div class="relative">
+                            <input type="text" id="searchInput" onkeyup="searchInquiries()" placeholder="Search by name or subject..." class="w-full p-3 pr-10 border border-gray-300 rounded-lg">
+                            <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="grid md:grid-cols-4 gap-6 mb-6">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-3xl text-blue-600 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Total Inquiries</h3>
+                            <p class="text-3xl font-bold text-blue-600">248</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-clock text-3xl text-yellow-600 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Pending</h3>
+                            <p class="text-3xl font-bold text-yellow-600">45</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-3xl text-green-600 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Solved</h3>
+                            <p class="text-3xl font-bold text-green-600">203</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-plus text-3xl text-purple-600 mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">New Today</h3>
+                            <p class="text-3xl font-bold text-purple-600">12</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inquiries Table -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <div class="p-6 border-b">
+                    <h3 class="text-xl font-bold text-gray-800">All Inquiries</h3>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inquiriesTableBody" class="bg-white divide-y divide-gray-200">
+                            <!-- Sample inquiry data -->
+                            <tr class="inquiry-row" data-status="pending" data-type="recipe" data-name="Sarah Johnson" data-email="sarah.johnson@example.com" data-subject="Recipe Issue with Fried Rice">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">Sarah Johnson</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">sarah.johnson@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">Recipe Issue with Fried Rice</div>
+                                    <div class="text-sm text-gray-500">Need help with cooking instructions...</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Recipe Issue</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jun 27, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button onclick="viewInquiry('inquiry-1')" class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button onclick="markAsSolved('inquiry-1')" class="text-green-600 hover:text-green-900">
+                                        <i class="fas fa-check"></i> Mark Solved
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="inquiry-row" data-status="solved" data-type="account" data-name="Mike Chen" data-email="mike.chen@example.com" data-subject="Unable to Reset Password">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">Mike Chen</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">mike.chen@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">Unable to Reset Password</div>
+                                    <div class="text-sm text-gray-500">Password reset email not received...</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Account Support</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Solved</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jun 25, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button onclick="viewInquiry('inquiry-2')" class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button onclick="markAsPending('inquiry-2')" class="text-yellow-600 hover:text-yellow-900">
+                                        <i class="fas fa-undo"></i> Reopen
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="inquiry-row" data-status="pending" data-type="feedback" data-name="Lisa Wong" data-email="lisa.wong@example.com" data-subject="Suggestion for New Features">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">Lisa Wong</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">lisa.wong@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">Suggestion for New Features</div>
+                                    <div class="text-sm text-gray-500">Would love to see meal planning feature...</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Feedback</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jun 26, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button onclick="viewInquiry('inquiry-3')" class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button onclick="markAsSolved('inquiry-3')" class="text-green-600 hover:text-green-900">
+                                        <i class="fas fa-check"></i> Mark Solved
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="inquiry-row" data-status="pending" data-type="bug" data-name="David Brown" data-email="david.brown@example.com" data-subject="App Crashes on Recipe Save">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">David Brown</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">david.brown@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">App Crashes on Recipe Save</div>
+                                    <div class="text-sm text-gray-500">Getting error when trying to save recipe...</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Bug Report</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jun 28, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button onclick="viewInquiry('inquiry-4')" class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button onclick="markAsSolved('inquiry-4')" class="text-green-600 hover:text-green-900">
+                                        <i class="fas fa-check"></i> Mark Solved
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="inquiry-row" data-status="solved" data-type="general" data-name="Emma Davis" data-email="emma.davis@example.com" data-subject="How to Change Profile Picture">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-gray-900">Emma Davis</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">emma.davis@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">How to Change Profile Picture</div>
+                                    <div class="text-sm text-gray-500">Need help updating profile image...</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">General Inquiry</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Solved</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jun 24, 2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button onclick="viewInquiry('inquiry-5')" class="text-blue-600 hover:text-blue-900">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                    <button onclick="markAsPending('inquiry-5')" class="text-yellow-600 hover:text-yellow-900">
+                                        <i class="fas fa-undo"></i> Reopen
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200">
+                    <div class="flex-1 flex justify-between sm:hidden">
+                        <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                            Previous
+                        </button>
+                        <button class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                            Next
+                        </button>
+                    </div>
+                    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-sm text-gray-700">
+                                Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">248</span> results
+                            </p>
+                        </div>
+                        <div>
+                            <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+                                <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="bg-blue-50 border-blue-500 text-blue-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">1</button>
+                                <button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">2</button>
+                                <button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">3</button>
+                                <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Inquiry Modal -->
+    <div id="viewInquiryModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-medium text-gray-900">Inquiry Details</h3>
+                    <button onclick="closeViewInquiryModal()" class="text-gray-400 hover:text-gray-600" title="Close">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div class="space-y-6">
+                    <!-- Inquiry Header -->
+                    <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                        <div class="flex-1">
+                            <h4 id="viewInquirySubject" class="text-xl font-bold text-gray-900">Recipe Issue with Fried Rice</h4>
+                            <p id="viewInquiryName" class="text-gray-600">Sarah Johnson</p>
+                            <p id="viewInquiryEmail" class="text-sm text-gray-500">sarah.johnson@example.com</p>
+                        </div>
+                        <div>
+                            <span id="viewInquiryStatus" class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-sm font-medium">Pending</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Inquiry Details -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-medium text-gray-900 mb-3">Inquiry Information</h5>
+                            <div class="space-y-2">
+                                <p><span class="font-medium">Type:</span> <span id="viewInquiryType">Recipe Issue</span></p>
+                                <p><span class="font-medium">Date:</span> <span id="viewInquiryDate">June 27, 2025</span></p>
+                                <p><span class="font-medium">Priority:</span> <span id="viewInquiryPriority">Normal</span></p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h5 class="font-medium text-gray-900 mb-3">Contact Information</h5>
+                            <div class="space-y-2">
+                                <p><span class="font-medium">Phone:</span> <span id="viewInquiryPhone">+1 555-0123</span></p>
+                                <p><span class="font-medium">Preferred Contact:</span> <span id="viewInquiryContact">Email</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Message -->
+                    <div>
+                        <h5 class="font-medium text-gray-900 mb-3">Message</h5>
+                        <div id="viewInquiryMessage" class="p-4 bg-gray-50 rounded-lg text-gray-700">
+                            I'm having trouble with the fried rice recipe. The rice keeps coming out mushy and the vegetables are overcooked. I've followed the instructions exactly as written. Could you please provide some tips or clarification on the cooking times and heat settings? Thank you!
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button onclick="closeViewInquiryModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">
+                        Close
+                    </button>
+                    <button id="inquiryActionButton" onclick="toggleInquiryStatus()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                        Mark as Solved
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 ml-0 md:ml-280">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentInquiryId = null;
+
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        function toggleUserMenu() {
+            const userMenu = document.getElementById('user-menu');
+            userMenu.classList.toggle('hidden');
+        }
+
+        function filterInquiries() {
+            const statusFilter = document.getElementById('statusFilter').value;
+            const typeFilter = document.getElementById('typeFilter').value;
+            const dateFilter = document.getElementById('dateFilter').value;
+            const rows = document.querySelectorAll('.inquiry-row');
+
+            rows.forEach(row => {
+                let showRow = true;
+
+                // Filter by status
+                if (statusFilter !== 'all' && row.dataset.status !== statusFilter) {
+                    showRow = false;
+                }
+
+                // Filter by type
+                if (typeFilter !== 'all' && row.dataset.type !== typeFilter) {
+                    showRow = false;
+                }
+
+                // Date filter logic would be implemented here with actual dates
+                // For now, showing all for date filter
+
+                row.style.display = showRow ? '' : 'none';
+            });
+        }
+
+        function searchInquiries() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('.inquiry-row');
+
+            rows.forEach(row => {
+                const name = row.dataset.name.toLowerCase();
+                const email = row.dataset.email.toLowerCase();
+                const subject = row.dataset.subject.toLowerCase();
+                
+                if (name.includes(searchTerm) || email.includes(searchTerm) || subject.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function viewInquiry(inquiryId) {
+            currentInquiryId = inquiryId;
+            
+            // Sample data - replace with actual data from API
+            const inquiryData = getInquiryData(inquiryId);
+            
+            document.getElementById('viewInquirySubject').textContent = inquiryData.subject;
+            document.getElementById('viewInquiryName').textContent = inquiryData.name;
+            document.getElementById('viewInquiryEmail').textContent = inquiryData.email;
+            document.getElementById('viewInquiryType').textContent = inquiryData.type;
+            document.getElementById('viewInquiryDate').textContent = inquiryData.date;
+            document.getElementById('viewInquiryPriority').textContent = inquiryData.priority;
+            document.getElementById('viewInquiryPhone').textContent = inquiryData.phone;
+            document.getElementById('viewInquiryContact').textContent = inquiryData.contact;
+            document.getElementById('viewInquiryMessage').textContent = inquiryData.message;
+            
+            // Update status
+            const statusEl = document.getElementById('viewInquiryStatus');
+            statusEl.className = `px-3 py-1 rounded-full text-sm font-medium ${getStatusClass(inquiryData.status)}`;
+            statusEl.textContent = inquiryData.status;
+            
+            // Update action button
+            const actionButton = document.getElementById('inquiryActionButton');
+            if (inquiryData.status === 'pending') {
+                actionButton.textContent = 'Mark as Solved';
+                actionButton.className = 'px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700';
+            } else {
+                actionButton.textContent = 'Reopen Inquiry';
+                actionButton.className = 'px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700';
+            }
+            
+            document.getElementById('viewInquiryModal').classList.remove('hidden');
+        }
+
+        function closeViewInquiryModal() {
+            document.getElementById('viewInquiryModal').classList.add('hidden');
+        }
+
+        function markAsSolved(inquiryId) {
+            if (confirm('Are you sure you want to mark this inquiry as solved?')) {
+                // API call to mark as solved
+                console.log('Marking inquiry as solved:', inquiryId);
+                updateInquiryStatus(inquiryId, 'solved');
+                alert('Inquiry has been marked as solved successfully.');
+            }
+        }
+
+        function markAsPending(inquiryId) {
+            if (confirm('Are you sure you want to reopen this inquiry?')) {
+                // API call to mark as pending
+                console.log('Reopening inquiry:', inquiryId);
+                updateInquiryStatus(inquiryId, 'pending');
+                alert('Inquiry has been reopened successfully.');
+            }
+        }
+
+        function toggleInquiryStatus() {
+            const inquiryData = getInquiryData(currentInquiryId);
+            if (inquiryData.status === 'pending') {
+                markAsSolved(currentInquiryId);
+            } else {
+                markAsPending(currentInquiryId);
+            }
+            closeViewInquiryModal();
+        }
+
+        // Helper functions
+        function getInquiryData(inquiryId) {
+            // Sample data - replace with actual API call
+            const sampleData = {
+                'inquiry-1': {
+                    name: 'Sarah Johnson',
+                    email: 'sarah.johnson@example.com',
+                    subject: 'Recipe Issue with Fried Rice',
+                    type: 'Recipe Issue',
+                    date: 'June 27, 2025',
+                    status: 'pending',
+                    priority: 'Normal',
+                    phone: '+1 555-0123',
+                    contact: 'Email',
+                    message: "I'm having trouble with the fried rice recipe. The rice keeps coming out mushy and the vegetables are overcooked. I've followed the instructions exactly as written. Could you please provide some tips or clarification on the cooking times and heat settings? Thank you!"
+                },
+                'inquiry-2': {
+                    name: 'Mike Chen',
+                    email: 'mike.chen@example.com',
+                    subject: 'Unable to Reset Password',
+                    type: 'Account Support',
+                    date: 'June 25, 2025',
+                    status: 'solved',
+                    priority: 'High',
+                    phone: '+1 555-0456',
+                    contact: 'Email',
+                    message: "I'm unable to reset my password. I've tried multiple times but I'm not receiving the reset email. I've checked my spam folder as well. Please help me regain access to my account."
+                },
+                'inquiry-3': {
+                    name: 'Lisa Wong',
+                    email: 'lisa.wong@example.com',
+                    subject: 'Suggestion for New Features',
+                    type: 'Feedback',
+                    date: 'June 26, 2025',
+                    status: 'pending',
+                    priority: 'Low',
+                    phone: '+1 555-0789',
+                    contact: 'Email',
+                    message: "I love using FoodieCamp! I have a suggestion - would it be possible to add a meal planning feature where users can plan their weekly meals and generate shopping lists based on the recipes? This would be incredibly helpful for families like mine."
+                },
+                'inquiry-4': {
+                    name: 'David Brown',
+                    email: 'david.brown@example.com',
+                    subject: 'App Crashes on Recipe Save',
+                    type: 'Bug Report',
+                    date: 'June 28, 2025',
+                    status: 'pending',
+                    priority: 'High',
+                    phone: '+1 555-0321',
+                    contact: 'Phone',
+                    message: "The mobile app keeps crashing whenever I try to save a recipe to my favorites. This happens consistently on my iPhone 14. I've tried restarting the app and my phone but the issue persists. Please investigate this bug."
+                },
+                'inquiry-5': {
+                    name: 'Emma Davis',
+                    email: 'emma.davis@example.com',
+                    subject: 'How to Change Profile Picture',
+                    type: 'General Inquiry',
+                    date: 'June 24, 2025',
+                    status: 'solved',
+                    priority: 'Low',
+                    phone: '+1 555-0654',
+                    contact: 'Email',
+                    message: "Hi, I'm trying to update my profile picture but I can't seem to find the option in my account settings. Could you please guide me through the steps to change my profile image? Thank you for your help!"
+                }
+            };
+            
+            return sampleData[inquiryId] || sampleData['inquiry-1'];
+        }
+
+        function getStatusClass(status) {
+            switch(status) {
+                case 'pending': return 'bg-yellow-100 text-yellow-800';
+                case 'solved': return 'bg-green-100 text-green-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        function updateInquiryStatus(inquiryId, newStatus) {
+            // Find the inquiry row and update the status
+            const rows = document.querySelectorAll('.inquiry-row');
+            rows.forEach(row => {
+                if (row.querySelector('button[onclick*="' + inquiryId + '"]')) {
+                    row.dataset.status = newStatus;
+                    const statusEl = row.querySelector('span[class*="bg-"]');
+                    statusEl.className = `px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusClass(newStatus)}`;
+                    statusEl.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+                    
+                    // Update action buttons
+                    const actionsCell = row.querySelector('td:last-child');
+                    updateActionButtons(actionsCell, inquiryId, newStatus);
+                }
+            });
+        }
+
+        function updateActionButtons(actionsCell, inquiryId, status) {
+            let actionButtons = `
+                <button onclick="viewInquiry('${inquiryId}')" class="text-blue-600 hover:text-blue-900">
+                    <i class="fas fa-eye"></i> View
+                </button>
+            `;
+            
+            if (status === 'pending') {
+                actionButtons += `
+                    <button onclick="markAsSolved('${inquiryId}')" class="text-green-600 hover:text-green-900">
+                        <i class="fas fa-check"></i> Mark Solved
+                    </button>
+                `;
+            } else {
+                actionButtons += `
+                    <button onclick="markAsPending('${inquiryId}')" class="text-yellow-600 hover:text-yellow-900">
+                        <i class="fas fa-undo"></i> Reopen
+                    </button>
+                `;
+            }
+            
+            actionsCell.innerHTML = actionButtons;
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const viewModal = document.getElementById('viewInquiryModal');
+            
+            if (event.target === viewModal) {
+                closeViewInquiryModal();
+            }
+        });
+
+        // Close menus when clicking outside
+        document.addEventListener('click', function(event) {
+            const userMenu = document.getElementById('user-menu');
+            const userButton = event.target.closest('[onclick="toggleUserMenu()"]');
+            
+            if (!userButton && !userMenu.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                document.getElementById('user-menu').classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

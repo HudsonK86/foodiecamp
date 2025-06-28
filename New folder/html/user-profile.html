@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - FoodieCamp</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/user-dashboard.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <button onclick="toggleSidebar()" class="md:hidden text-gray-700 mr-3" title="Toggle sidebar">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisines</a>
+                    <a href="events.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <div class="relative">
+                        <button onclick="toggleUserMenu()" class="flex items-center text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" title="User menu">
+                            <img src="https://via.placeholder.com/24x24" alt="Uncle Roger" class="w-6 h-6 rounded-full mr-2">
+                            <span>Uncle Roger</span>
+                            <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div id="user-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-50">
+                            <a href="user-dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                            <div class="border-t border-gray-200"></div>
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-40 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cuisines</a>
+            <a href="events.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <div class="border-t border-gray-200 mt-2 pt-2">
+                <a href="user-dashboard.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Dashboard</a>
+                <a href="user-recipe.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">My Recipes</a>
+                <a href="user-bookmark.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Bookmarks</a>
+                <a href="user-event.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">My Events</a>
+                <a href="user-register-event.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Event Registrations</a>
+                <a href="user-notification.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Notifications</a>
+                <a href="user-profile.html" class="block px-3 py-2 text-blue-600 font-medium">Profile Settings</a>
+                <a href="post-recipe.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Post Recipe</a>
+                <a href="post-event.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Post Event</a>
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Logout</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- User Sidebar -->
+    <div class="sidebar bg-white shadow-lg fixed left-0 top-16 z-40">
+        <div class="p-4 border-b">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/80x80" alt="Uncle Roger" class="w-20 h-20 rounded-full mr-4">
+                <div>
+                    <span class="text-lg font-bold text-gray-800">Uncle Roger</span>
+                </div>
+            </div>
+        </div>
+        <nav class="mt-4">
+            <a href="user-dashboard.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a href="user-recipe.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-book mr-3"></i>
+                Recipe
+            </a>
+            <a href="user-bookmark.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-bookmark mr-3"></i>
+                Bookmark
+            </a>
+            <a href="user-event.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-calendar mr-3"></i>
+                Event
+            </a>
+            <a href="user-register-event.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-calendar-check mr-3"></i>
+                Event Registration
+            </a>
+            <a href="user-notification.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-bell mr-3"></i>
+                Notification
+                <span class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full">5</span>
+            </a>
+            <a href="user-profile.html" class="flex items-center px-4 py-3 text-gray-700 bg-primary-blue">
+                <i class="fas fa-cog mr-3"></i>
+                Profile
+            </a>
+        </nav>
+        <div class="absolute bottom-16 left-4 right-4">
+            <a href="index.html" class="flex items-center justify-center w-full px-4 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                Logout
+            </a>
+        </div>  
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content bg-gray-50 min-h-screen">
+        <div class="p-8">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Profile Settings</h1>
+            </div>
+
+            <!-- Profile Form -->
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="text-center mb-8">
+                        <i class="fas fa-user-edit text-4xl text-blue-600 mb-4"></i>
+                        <h2 class="text-2xl font-bold text-gray-900">Edit Your Profile</h2>
+                        <p class="text-gray-600">Update your personal information and preferences</p>
+                    </div>
+
+                    <form onsubmit="handleProfileUpdate(event)" class="space-y-6">
+                        <!-- Profile Image Upload -->
+                        <div class="flex flex-col items-center mb-6">
+                            <label for="profile-image" class="block text-sm font-medium text-gray-700 mb-2">Profile Picture</label>
+                            <div class="relative">
+                                <img id="profile-preview" src="https://via.placeholder.com/200x200" alt="Profile Image" class="w-48 h-48 rounded-full object-cover border-2 border-gray-300 shadow-sm">
+                                <label for="profile-image" class="absolute bottom-0 right-0 bg-blue-600 text-white rounded-full p-2 cursor-pointer hover:bg-blue-700 transition-colors" title="Change profile picture">
+                                    <i class="fas fa-camera text-sm"></i>
+                                </label>
+                                <input type="file" id="profile-image" name="profile-image" accept="image/*" class="hidden" onchange="previewImage(this)" title="Upload profile picture">
+                            </div>
+                            <p class="text-sm text-gray-500 mt-2">Click the camera icon to change your profile picture</p>
+                        </div>
+
+                        <!-- First Name and Last Name Row -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="firstname" class="block text-sm font-medium text-gray-700">First Name</label>
+                                <div class="mt-1">
+                                    <input id="firstname" name="firstname" type="text" required value="Uncle" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="lastname" class="block text-sm font-medium text-gray-700">Last Name</label>
+                                <div class="mt-1">
+                                    <input id="lastname" name="lastname" type="text" required value="Roger" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email (Read-only) -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">
+                                <i class="fas fa-envelope mr-2 text-blue-600"></i>
+                                Email Address
+                            </label>
+                            <div class="mt-1">
+                                <input id="email" name="email" type="email" value="uncle.roger@foodiecamp.com" readonly 
+                                       class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-600 cursor-not-allowed">
+                                <p class="mt-1 text-xs text-gray-500">Email address cannot be changed. Contact support if needed.</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-700">
+                                <i class="fas fa-lock mr-2 text-blue-600"></i>
+                                Password
+                            </label>
+                            <div class="mt-1">
+                                <input id="password" name="password" type="password" minlength="8" 
+                                       placeholder="Enter your password"
+                                       class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <p class="mt-1 text-xs text-gray-500">Must be at least 8 characters long</p>
+                            </div>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div>
+                            <label for="confirm-password" class="block text-sm font-medium text-gray-700">
+                                <i class="fas fa-lock mr-2 text-blue-600"></i>
+                                Confirm Password
+                            </label>
+                            <div class="mt-1">
+                                <input id="confirm-password" name="confirm-password" type="password" minlength="8" 
+                                       placeholder="Confirm your password"
+                                       class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <p class="mt-1 text-xs text-gray-500">Re-enter your password</p>
+                            </div>
+                        </div>
+
+                        <!-- Gender and Date of Birth Row -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                                <div class="mt-1">
+                                    <select id="gender" name="gender" required class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                        <option value="">Select Gender</option>
+                                        <option value="male" selected>Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                        <option value="prefer-not-to-say">Prefer not to say</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                                <div class="mt-1">
+                                    <input id="dob" name="dob" type="date" required value="1970-04-06" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nationality -->
+                        <div>
+                            <label for="nationality" class="block text-sm font-medium text-gray-700">Nationality</label>
+                            <div class="mt-1">
+                                <select id="nationality" name="nationality" required class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="">Select Nationality</option>
+                                    <option value="afghan">Afghan</option>
+                                    <option value="american">American</option>
+                                    <option value="australian">Australian</option>
+                                    <option value="bangladeshi">Bangladeshi</option>
+                                    <option value="british">British</option>
+                                    <option value="canadian">Canadian</option>
+                                    <option value="chinese">Chinese</option>
+                                    <option value="french">French</option>
+                                    <option value="german">German</option>
+                                    <option value="indian">Indian</option>
+                                    <option value="indonesian">Indonesian</option>
+                                    <option value="italian">Italian</option>
+                                    <option value="japanese">Japanese</option>
+                                    <option value="malaysian" selected>Malaysian</option>
+                                    <option value="mexican">Mexican</option>
+                                    <option value="pakistani">Pakistani</option>
+                                    <option value="philippine">Philippine</option>
+                                    <option value="singaporean">Singaporean</option>
+                                    <option value="south-korean">South Korean</option>
+                                    <option value="spanish">Spanish</option>
+                                    <option value="thai">Thai</option>
+                                    <option value="vietnamese">Vietnamese</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!-- Action Buttons -->
+                        <div class="flex space-x-4 pt-6">
+                            <button type="submit" class="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                                <i class="fas fa-save mr-2"></i>
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 ml-0 md:ml-280">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        function toggleUserMenu() {
+            const userMenu = document.getElementById('user-menu');
+            userMenu.classList.toggle('hidden');
+        }
+
+        function toggleProfileMenu(type) {
+            const menu = document.getElementById(type + '-profile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Profile image preview functionality
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    // Only update the profile preview in the edit section
+                    document.getElementById('profile-preview').src = e.target.result;
+                };
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Form submission handler
+        function handleProfileUpdate(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const password = formData.get('password');
+            const confirmPassword = formData.get('confirm-password');
+            
+            // Validate password confirmation if password is provided
+            if (password && password !== confirmPassword) {
+                alert('Passwords do not match. Please try again.');
+                return;
+            }
+            
+            // In a real application, this would send data to server
+            alert('Profile updated successfully!');
+            
+            // Update display name if changed
+            const firstName = formData.get('firstname');
+            const lastName = formData.get('lastname');
+            const fullName = `${firstName} ${lastName}`;
+            
+            // Update all name displays
+            const nameElements = document.querySelectorAll('span:contains("Uncle Roger")');
+            nameElements.forEach(element => {
+                if (element.textContent.trim() === 'Uncle Roger') {
+                    element.textContent = fullName;
+                }
+            });
+        }
+
+        // Reset form to original values
+        function resetForm() {
+            if (confirm('Are you sure you want to reset all changes?')) {
+                document.getElementById('firstname').value = 'Uncle';
+                document.getElementById('lastname').value = 'Roger';
+                document.getElementById('gender').value = 'male';
+                document.getElementById('dob').value = '1970-04-06';
+                document.getElementById('nationality').value = 'malaysian';
+                
+                // Reset password fields
+                document.getElementById('password').value = '';
+                document.getElementById('confirm-password').value = '';
+                
+                // Reset profile image
+                document.getElementById('profile-preview').src = 'https://via.placeholder.com/200x200';
+                
+                alert('Form has been reset to original values.');
+            }
+        }
+
+        // Password field validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordField = document.getElementById('password');
+            const confirmPasswordField = document.getElementById('confirm-password');
+            
+            function validatePasswords() {
+                const password = passwordField.value;
+                const confirmPassword = confirmPasswordField.value;
+                
+                if (password && confirmPassword && password !== confirmPassword) {
+                    confirmPasswordField.setCustomValidity('Passwords do not match');
+                } else {
+                    confirmPasswordField.setCustomValidity('');
+                }
+            }
+            
+            passwordField.addEventListener('input', validatePasswords);
+            confirmPasswordField.addEventListener('input', validatePasswords);
+        });
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                document.getElementById('user-menu').classList.add('hidden');
+            }
+        });
+
+        // Close menus when clicking outside
+        document.addEventListener('click', function(event) {
+            const userMenu = document.getElementById('user-menu');
+            const userButton = event.target.closest('[onclick="toggleUserMenu()"]');
+            
+            if (!userButton && !userMenu.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

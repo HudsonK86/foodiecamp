@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Events - FoodieCamp Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/admin-dashboard.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <button onclick="toggleSidebar()" class="md:hidden text-gray-700 mr-3" title="Toggle sidebar">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisines</a>
+                    <a href="events.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <div class="relative">
+                        <button onclick="toggleAdminMenu()" class="flex items-center text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" title="Admin menu">
+                            <img src="https://via.placeholder.com/24x24" alt="Admin" class="w-6 h-6 rounded-full mr-2">
+                            <span>Admin</span>
+                            <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+                        <div id="admin-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden z-50">
+                            <a href="admin-dashboard.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                            <div class="border-t border-gray-200"></div>
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-40 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cuisines</a>
+            <a href="events.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <div class="border-t border-gray-200 mt-2 pt-2">
+                <a href="admin-dashboard.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Dashboard</a>
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Logout</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Sidebar -->
+    <div class="sidebar bg-white shadow-lg fixed left-0 top-16 z-40">
+        <div class="p-4 border-b">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/80x80" alt="Admin" class="w-20 h-20 rounded-full mr-4">
+                <div>
+                    <span class="text-lg font-bold text-gray-800">Admin</span>
+                </div>
+            </div>
+        </div>
+        <nav class="mt-4">
+            <a href="admin-dashboard.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Dashboard
+            </a>
+            <a href="admin-cuisine.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-utensils mr-3"></i>
+                Cuisine
+            </a>
+            <a href="admin-recipe.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-book mr-3"></i>
+                Recipe
+            </a>
+            <a href="admin-review.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-star mr-3"></i>
+                Review
+            </a>
+            <a href="admin-event.html" class="flex items-center px-4 py-3 text-gray-700 bg-primary-blue">
+                <i class="fas fa-calendar mr-3"></i>
+                Event
+            </a>
+            <a href="admin-user.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-users mr-3"></i>
+                User
+            </a>
+            <a href="admin-inquiry.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-envelope mr-3"></i>
+                Inquiry
+            </a>
+            <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary-blue">
+                <i class="fas fa-cog mr-3"></i>
+                Profile
+            </a>
+        </nav>
+        <div class="absolute bottom-4 left-4 right-4">
+            <a href="index.html" class="flex items-center justify-center w-full px-4 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+                <i class="fas fa-sign-out-alt mr-2"></i>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content bg-gray-50 min-h-screen">
+        <div class="p-8">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Manage Events</h1>
+                <button onclick="window.location.href='post-event.html'" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors" title="Create new event">
+                    <i class="fas fa-plus mr-2"></i>
+                    Post Event
+                </button>
+            </div>
+
+            <!-- Section Tabs -->
+            <div class="bg-white rounded-lg shadow mb-8">
+                <div class="border-b border-gray-200">
+                    <nav class="-mb-px flex space-x-8 px-6">
+                        <button id="admin-events-tab" onclick="showSection('admin')" class="py-4 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600">
+                            Admin Events
+                        </button>
+                        <button id="user-events-tab" onclick="showSection('user')" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            User Events
+                        </button>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Filter and Search -->
+            <div class="bg-white rounded-lg shadow p-6 mb-8">
+                <div class="grid md:grid-cols-4 gap-4">
+                    <div>
+                        <label for="status-filter" class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                        <select id="status-filter" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            <option value="all">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                            <option value="cancelled">Cancelled</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="type-filter" class="block text-sm font-medium text-gray-700 mb-2">Event Type</label>
+                        <select id="type-filter" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            <option value="all">All Types</option>
+                            <option value="cooking-class">Cooking Class</option>
+                            <option value="food-festival">Food Festival</option>
+                            <option value="workshop">Workshop</option>
+                            <option value="competition">Competition</option>
+                            <option value="tasting">Tasting Event</option>
+                            <option value="meetup">Community Meetup</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="date-filter" class="block text-sm font-medium text-gray-700 mb-2">Date Range</label>
+                        <select id="date-filter" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            <option value="all">All Dates</option>
+                            <option value="upcoming">Upcoming</option>
+                            <option value="this-week">This Week</option>
+                            <option value="this-month">This Month</option>
+                            <option value="past">Past Events</option>
+                        </select>
+                    </div>
+               
+                    <div>
+                        <label for="search-event" class="block text-sm font-medium text-gray-700 mb-2">Search</label>
+                        <div class="relative">
+                            <input type="text" id="search-event" placeholder="Search events..." class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 pl-10">
+                            <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Events Section -->
+            <div id="admin-events-section" class="event-section">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" id="admin-event-grid">
+                    <!-- Admin Event 1 -->
+                    <div class="bg-white rounded-xl shadow-lg transition-all duration-300 event-card" data-status="approved" data-type="cooking-class" data-author="admin">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=250&fit=crop" alt="Asian Cooking Masterclass" class="w-full h-48 object-cover rounded-t-xl">
+                            <div class="absolute top-2 right-2">
+                                <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">Approved</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Asian Cooking Masterclass</h3>
+                            <p class="text-gray-600 text-sm mb-3">Learn authentic Asian cooking techniques from professional chefs...</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar text-gray-500 mr-2"></i>
+                                    <span class="text-sm text-gray-600">Dec 15, 2024</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-users text-gray-500 mr-2"></i>
+                                    <span class="text-sm text-gray-600">25/30</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <button onclick="viewEvent('asian-cooking-masterclass')" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition" title="View event details">
+                                    <i class="fas fa-eye mr-2"></i>
+                                    View Event
+                                </button>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="editEvent('asian-cooking-masterclass')" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition border border-blue-600" title="Edit event">
+                                        <i class="fas fa-edit mr-1"></i>
+                                        Edit
+                                    </button>
+                                    <button onclick="toggleEventVisibility('asian-cooking-masterclass', 'public')" class="bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition" title="Change visibility">
+                                        <i class="fas fa-eye mr-1"></i>
+                                        Private
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Admin Event 2 -->
+                    <div class="bg-white rounded-xl shadow-lg transition-all duration-300 event-card" data-status="approved" data-type="food-festival" data-author="admin">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=250&fit=crop" alt="International Food Festival" class="w-full h-48 object-cover rounded-t-xl">
+                            <div class="absolute top-2 right-2">
+                                <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">Approved</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">International Food Festival</h3>
+                            <p class="text-gray-600 text-sm mb-3">Celebrate global cuisines with food stalls, live cooking demos...</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar text-gray-500 mr-2"></i>
+                                    <span class="text-sm text-gray-600">Jan 20, 2025</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-users text-gray-500 mr-2"></i>
+                                    <span class="text-sm text-gray-600">450/500</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <button onclick="viewEvent('food-festival')" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition" title="View event details">
+                                    <i class="fas fa-eye mr-2"></i>
+                                    View Event
+                                </button>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="editEvent('food-festival')" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition border border-blue-600" title="Edit event">
+                                        <i class="fas fa-edit mr-1"></i>
+                                        Edit
+                                    </button>
+                                    <button onclick="toggleEventVisibility('food-festival', 'public')" class="bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition" title="Change visibility">
+                                        <i class="fas fa-eye mr-1"></i>
+                                        Private
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Events Section -->
+            <div id="user-events-section" class="event-section hidden">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" id="user-event-grid">
+                    <!-- User Event 1 - Pending -->
+                    <div class="bg-white rounded-xl shadow-lg transition-all duration-300 event-card" data-status="pending" data-type="workshop" data-author="user">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=250&fit=crop" alt="Pasta Making Workshop" class="w-full h-48 object-cover rounded-t-xl">
+                            <div class="absolute top-2 right-2">
+                                <span class="bg-yellow-500 text-white px-2 py-1 rounded-full text-xs font-medium">Pending</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Pasta Making Workshop</h3>
+                            <p class="text-gray-600 text-sm mb-3">Learn to make fresh pasta from scratch with traditional techniques...</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar text-gray-500 mr-2"></i>
+                                    <span class="text-sm text-gray-600">Jan 25, 2025</span>
+                                </div>
+                                <div class="text-gray-600 text-sm">By: Maria Rossi</div>
+                            </div>
+                            <div class="space-y-2">
+                                <button onclick="viewEvent('pasta-workshop')" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition" title="View event details">
+                                    <i class="fas fa-eye mr-2"></i>
+                                    View Event
+                                </button>
+                                <div class="grid grid-cols-3 gap-1">
+                                    <button onclick="approveEvent('pasta-workshop')" class="bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition text-xs" title="Approve event">
+                                        <i class="fas fa-check mr-1"></i>
+                                        Approve
+                                    </button>
+                                    <button onclick="showRejectModal('pasta-workshop')" class="bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition text-xs" title="Reject event">
+                                        <i class="fas fa-times mr-1"></i>
+                                        Reject
+                                    </button>
+                                    <button onclick="requestChanges('pasta-workshop')" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition text-xs border border-blue-600" title="Request changes">
+                                        <i class="fas fa-edit mr-1"></i>
+                                        Changes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Event 2 - Approved -->
+                    <div class="bg-white rounded-xl shadow-lg transition-all duration-300 event-card" data-status="approved" data-type="tasting" data-author="user">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=250&fit=crop" alt="Wine & Cheese Tasting" class="w-full h-48 object-cover rounded-t-xl">
+                            <div class="absolute top-2 right-2">
+                                <span class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">Approved</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Wine & Cheese Tasting</h3>
+                            <p class="text-gray-600 text-sm mb-3">Explore perfect wine and cheese pairings with expert guidance...</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar text-gray-500 mr-2"></i>
+                                    <span class="text-sm text-gray-600">Feb 5, 2025</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-users text-gray-500 mr-2"></i>
+                                    <span class="text-sm text-gray-600">18/20</span>
+                                </div>
+                            </div>
+                            <div class="text-gray-600 text-sm mb-4">By: James Sommelier</div>
+                            <div class="space-y-2">
+                                <button onclick="viewEvent('wine-tasting')" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition" title="View event details">
+                                    <i class="fas fa-eye mr-2"></i>
+                                    View Event
+                                </button>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="editEvent('wine-tasting')" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition border border-blue-600" title="Edit event">
+                                        <i class="fas fa-edit mr-1"></i>
+                                        Edit
+                                    </button>
+                                    <button onclick="toggleEventVisibility('wine-tasting', 'public')" class="bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition" title="Change visibility">
+                                        <i class="fas fa-eye mr-1"></i>
+                                        Private
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Event 3 - Rejected -->
+                    <div class="bg-white rounded-xl shadow-lg transition-all duration-300 event-card" data-status="rejected" data-type="competition" data-author="user">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=250&fit=crop" alt="Chili Cook-off" class="w-full h-48 object-cover rounded-t-xl">
+                            <div class="absolute top-2 right-2">
+                                <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">Rejected</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Chili Cook-off Competition</h3>
+                            <p class="text-gray-600 text-sm mb-3">Spicy cooking competition with prizes for the best chili recipes...</p>
+                            <div class="text-gray-600 text-sm mb-4">By: Mike Rodriguez</div>
+                            <div class="space-y-2">
+                                <button onclick="viewEvent('chili-cookoff')" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition" title="View event details">
+                                    <i class="fas fa-eye mr-2"></i>
+                                    View Event
+                                </button>
+                                <button onclick="deleteEvent('chili-cookoff')" class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition" title="Delete event">
+                                    <i class="fas fa-trash mr-2"></i>
+                                    Delete Event
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Event 4 - Cancelled -->
+                    <div class="bg-white rounded-xl shadow-lg transition-all duration-300 event-card" data-status="cancelled" data-type="meetup" data-author="user">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=250&fit=crop" alt="Foodie Meetup" class="w-full h-48 object-cover rounded-t-xl">
+                            <div class="absolute top-2 right-2">
+                                <span class="bg-gray-500 text-white px-2 py-1 rounded-full text-xs font-medium">Cancelled</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Local Foodie Meetup</h3>
+                            <p class="text-gray-600 text-sm mb-3">Monthly gathering for food enthusiasts to share experiences...</p>
+                            <div class="text-gray-600 text-sm mb-4">By: Sarah Chen</div>
+                            <div class="space-y-2">
+                                <button onclick="viewEvent('foodie-meetup')" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition" title="View event details">
+                                    <i class="fas fa-eye mr-2"></i>
+                                    View Event
+                                </button>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="reactivateEvent('foodie-meetup')" class="bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition" title="Reactivate event">
+                                        <i class="fas fa-redo mr-1"></i>
+                                        Reactivate
+                                    </button>
+                                    <button onclick="deleteEvent('foodie-meetup')" class="bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition" title="Delete event">
+                                        <i class="fas fa-trash mr-1"></i>
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Event 5 - Completed -->
+                    <div class="bg-white rounded-xl shadow-lg transition-all duration-300 event-card" data-status="completed" data-type="cooking-class" data-author="user">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=250&fit=crop" alt="Sushi Making Class" class="w-full h-48 object-cover rounded-t-xl">
+                            <div class="absolute top-2 right-2">
+                                <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">Completed</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Sushi Making Class</h3>
+                            <p class="text-gray-600 text-sm mb-3">Hands-on class to learn traditional sushi preparation techniques...</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar text-gray-500 mr-2"></i>
+                                    <span class="text-sm text-gray-600">Dec 1, 2024</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-users text-gray-500 mr-2"></i>
+                                    <span class="text-sm text-gray-600">15/15</span>
+                                </div>
+                            </div>
+                            <div class="text-gray-600 text-sm mb-4">By: Akira Tanaka</div>
+                            <div class="space-y-2">
+                                <button onclick="viewEvent('sushi-class')" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition" title="View event details">
+                                    <i class="fas fa-eye mr-2"></i>
+                                    View Event
+                                </button>
+                                <button onclick="archiveEvent('sushi-class')" class="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition" title="Archive event">
+                                    <i class="fas fa-archive mr-2"></i>
+                                    Archive Event
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center items-center space-x-4">
+                <button class="px-4 py-2 bg-gray-300 text-gray-600 rounded-lg cursor-not-allowed" disabled>
+                    <i class="fas fa-chevron-left mr-2"></i>
+                    Previous
+                </button>
+                <span class="px-4 py-2 bg-blue-600 text-white rounded-lg">1</span>
+                <span class="px-4 py-2 text-gray-600">2</span>
+                <span class="px-4 py-2 text-gray-600">3</span>
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    Next
+                    <i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reject Event Modal -->
+    <div id="reject-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-screen overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 id="reject-modal-title" class="text-2xl font-bold text-gray-800">Reject Event</h2>
+                        <button onclick="closeRejectModal()" class="text-gray-500 hover:text-gray-700" title="Close modal">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+
+                    <form id="reject-form" class="space-y-6">
+                        <!-- Rejection Reason -->
+                        <div>
+                            <label for="reject-reason" class="block text-sm font-medium text-gray-700 mb-2">Reason for Rejection *</label>
+                            <textarea id="reject-reason" name="reason" required rows="4"
+                                      placeholder="Please provide a detailed reason for rejecting this event..."
+                                      class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        </div>
+
+                        <!-- Common Rejection Reasons -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Quick Select Reasons</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="reason-checkbox" value="Incomplete event details" class="mr-2">
+                                    <span class="ml-2 text-sm text-gray-700">Incomplete event details</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="reason-checkbox" value="Inappropriate content" class="mr-2">
+                                    <span class="ml-2 text-sm text-gray-700">Inappropriate content</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="reason-checkbox" value="Duplicate event" class="mr-2">
+                                    <span class="ml-2 text-sm text-gray-700">Duplicate event</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="reason-checkbox" value="Safety concerns" class="mr-2">
+                                    <span class="ml-2 text-sm text-gray-700">Safety concerns</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="reason-checkbox" value="Policy violation" class="mr-2">
+                                    <span class="ml-2 text-sm text-gray-700">Policy violation</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="flex space-x-4 pt-6">
+                            <button type="submit" class="flex-1 bg-red-600 text-white py-3 px-4 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-300">
+                                <i class="fas fa-times mr-2"></i>
+                                Reject Event
+                            </button>
+                            <button type="button" onclick="closeRejectModal()" class="flex-1 bg-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-400 transition duration-300">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 ml-0 md:ml-280">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentRejectEventId = null;
+
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        function toggleAdminMenu() {
+            const adminMenu = document.getElementById('admin-menu');
+            adminMenu.classList.toggle('hidden');
+        }
+
+        function showSection(section) {
+            // Update tab styles
+            const adminTab = document.getElementById('admin-events-tab');
+            const userTab = document.getElementById('user-events-tab');
+            const adminSection = document.getElementById('admin-events-section');
+            const userSection = document.getElementById('user-events-section');
+
+            if (section === 'admin') {
+                adminTab.className = 'py-4 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600';
+                userTab.className = 'py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300';
+                adminSection.classList.remove('hidden');
+                userSection.classList.add('hidden');
+            } else {
+                userTab.className = 'py-4 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600';
+                adminTab.className = 'py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300';
+                userSection.classList.remove('hidden');
+                adminSection.classList.add('hidden');
+            }
+        }
+
+        function viewEvent(eventId) {
+            alert('Viewing event: ' + eventId);
+            // In a real application, redirect to event details page
+            // window.location.href = 'event-details.html?id=' + eventId;
+        }
+
+        function editEvent(eventId) {
+            alert('Editing event: ' + eventId);
+            // In a real application, redirect to edit event page
+            // window.location.href = 'post-event.html?edit=' + eventId;
+        }
+
+        function approveEvent(eventId) {
+            if (confirm('Are you sure you want to approve this event?')) {
+                alert('Event approved: ' + eventId);
+                // In a real application, send AJAX request to approve event
+                location.reload();
+            }
+        }
+
+        function showRejectModal(eventId) {
+            currentRejectEventId = eventId;
+            document.getElementById('reject-modal-title').textContent = 'Reject Event: ' + eventId;
+            document.getElementById('reject-form').reset();
+            document.getElementById('reject-modal').classList.remove('hidden');
+        }
+
+        function closeRejectModal() {
+            currentRejectEventId = null;
+            document.getElementById('reject-modal').classList.add('hidden');
+        }
+
+        function requestChanges(eventId) {
+            const reason = prompt('Please specify what changes are needed:');
+            if (reason && reason.trim()) {
+                alert('Changes requested for event: ' + eventId + '\nReason: ' + reason);
+                // In a real application, send AJAX request to request changes
+                location.reload();
+            }
+        }
+
+        function deleteEvent(eventId) {
+            if (confirm('Are you sure you want to permanently delete this event? This action cannot be undone.')) {
+                alert('Event deleted: ' + eventId);
+                // In a real application, send AJAX request to delete event
+                location.reload();
+            }
+        }
+
+        function toggleEventVisibility(eventId, currentVisibility) {
+            const newVisibility = currentVisibility === 'public' ? 'private' : 'public';
+            const action = newVisibility === 'public' ? 'make public' : 'make private';
+            
+            if (confirm(`Are you sure you want to ${action} this event?`)) {
+                alert(`Event visibility changed to ${newVisibility}: ` + eventId);
+                // In a real application, send AJAX request to update visibility
+                location.reload();
+            }
+        }
+
+        function reactivateEvent(eventId) {
+            if (confirm('Are you sure you want to reactivate this event?')) {
+                alert('Event reactivated: ' + eventId);
+                // In a real application, send AJAX request to reactivate event
+                location.reload();
+            }
+        }
+
+        function archiveEvent(eventId) {
+            if (confirm('Are you sure you want to archive this completed event?')) {
+                alert('Event archived: ' + eventId);
+                // In a real application, send AJAX request to archive event
+                location.reload();
+            }
+        }
+
+        // Handle rejection form submission
+        document.getElementById('reject-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const reason = document.getElementById('reject-reason').value;
+            
+            // Add selected quick reasons to the main reason
+            const checkboxes = document.querySelectorAll('.reason-checkbox:checked');
+            const quickReasons = Array.from(checkboxes).map(cb => cb.value);
+            
+            let finalReason = reason;
+            if (quickReasons.length > 0) {
+                finalReason = quickReasons.join(', ') + (reason ? '. ' + reason : '');
+            }
+            
+            if (finalReason.trim()) {
+                alert(`Event rejected: ${currentRejectEventId}\nReason: ${finalReason}`);
+                closeRejectModal();
+                // In a real application, send AJAX request to reject event
+                location.reload();
+            }
+        });
+
+        // Handle quick reason checkboxes
+        document.querySelectorAll('.reason-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const reasonTextarea = document.getElementById('reject-reason');
+                const checkedBoxes = document.querySelectorAll('.reason-checkbox:checked');
+                const reasons = Array.from(checkedBoxes).map(cb => cb.value);
+                
+                if (reasons.length > 0) {
+                    reasonTextarea.placeholder = 'Selected reasons: ' + reasons.join(', ') + '\n\nAdd additional comments here...';
+                } else {
+                    reasonTextarea.placeholder = 'Please provide a detailed reason for rejecting this event...';
+                }
+            });
+        });
+
+        // Filter functionality
+        function filterEvents() {
+            const statusFilter = document.getElementById('status-filter').value;
+            const typeFilter = document.getElementById('type-filter').value;
+            const dateFilter = document.getElementById('date-filter').value;
+            const searchTerm = document.getElementById('search-event').value.toLowerCase();
+            const eventCards = document.querySelectorAll('.event-card');
+
+            eventCards.forEach(card => {
+                const status = card.dataset.status;
+                const type = card.dataset.type;
+                const title = card.querySelector('h3').textContent.toLowerCase();
+
+                let showCard = true;
+
+                // Status filter
+                if (statusFilter !== 'all' && status !== statusFilter) {
+                    showCard = false;
+                }
+
+                // Type filter
+                if (typeFilter !== 'all' && type !== typeFilter) {
+                    showCard = false;
+                }
+
+                // Date filter (simplified - in real app, would check actual dates)
+                if (dateFilter !== 'all') {
+                    // This would need actual date comparison logic
+                    // For demo purposes, we'll skip this filter
+                }
+
+                // Search filter
+                if (searchTerm && !title.includes(searchTerm)) {
+                    showCard = false;
+                }
+
+                card.style.display = showCard ? 'block' : 'none';
+            });
+        }
+
+        // Add event listeners for filters
+        document.getElementById('status-filter').addEventListener('change', filterEvents);
+        document.getElementById('type-filter').addEventListener('change', filterEvents);
+        document.getElementById('date-filter').addEventListener('change', filterEvents);
+        document.getElementById('search-event').addEventListener('input', filterEvents);
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                document.getElementById('admin-menu').classList.add('hidden');
+            }
+        });
+
+        // Close menus when clicking outside
+        document.addEventListener('click', function(event) {
+            const adminMenu = document.getElementById('admin-menu');
+            const adminButton = event.target.closest('[onclick="toggleAdminMenu()"]');
+            
+            if (!adminButton && !adminMenu.contains(event.target)) {
+                adminMenu.classList.add('hidden');
+            }
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('reject-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRejectModal();
+            }
+        });
+    </script>
+</body>
+</html>

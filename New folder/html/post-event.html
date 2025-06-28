@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Event - FoodieCamp</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-utensils text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">FoodieCamp</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="cuisines.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Cuisines</a>
+                    <a href="events.html" class="text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Event</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Login</a>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700" title="Toggle menu">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg z-30 hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+            <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+            <a href="cuisines.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Cuisines</a>
+            <a href="events.html" class="block px-3 py-2 text-blue-600">Event</a>
+            <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            <a href="login.html" class="block w-full text-left px-3 py-2 text-blue-600 font-medium">Login</a>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="min-h-screen bg-gray-50 py-12 sm:px-6 lg:px-8 pt-24">
+        <div class="max-w-4xl mx-auto">
+            <!-- Breadcrumb -->
+            <nav class="mb-8 text-sm text-gray-600">
+                <a href="index.html" class="hover:text-blue-600">Home</a>
+                <span class="mx-2">/</span>
+                <a href="events.html" class="hover:text-blue-600">Events</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-800">Post Event</span>
+            </nav>
+
+            <!-- Header -->
+            <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
+                <div class="text-center">
+                    <i class="fas fa-calendar-plus text-5xl text-blue-600 mb-4"></i>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Create New Event</h1>
+                    <p class="text-gray-600">Share your culinary event with the FoodieCamp community</p>
+                </div>
+            </div>
+
+            <!-- Event Form -->
+            <form class="space-y-8" id="post-event-form">
+                <!-- Basic Information -->
+                <div class="bg-white rounded-lg shadow-sm p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-info-circle text-blue-600 mr-3"></i>
+                        Basic Information
+                    </h2>
+
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- Event Title -->
+                        <div>
+                            <label for="event-title" class="block text-sm font-medium text-gray-700 mb-2">
+                                Event Title *
+                            </label>
+                            <input type="text" id="event-title" name="event-title" required
+                                   placeholder="e.g., French Pastry Masterclass"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <!-- Event Description -->
+                        <div>
+                            <label for="event-description" class="block text-sm font-medium text-gray-700 mb-2">
+                                Event Description *
+                            </label>
+                            <textarea id="event-description" name="event-description" rows="4" required
+                                      placeholder="Describe your event, what participants will learn, and what makes it special..."
+                                      class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        </div>
+
+                        <!-- Event Image -->
+                        <div>
+                            <label for="event-image" class="block text-sm font-medium text-gray-700 mb-2">
+                                Event Image *
+                            </label>
+                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div class="space-y-1 text-center">
+                                    <i class="fas fa-image text-4xl text-gray-400"></i>
+                                    <div class="flex text-sm text-gray-600">
+                                        <label for="event-image" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                            <span>Upload event image</span>
+                                            <input id="event-image" name="event-image" type="file" accept="image/*" class="sr-only">
+                                        </label>
+                                        <p class="pl-1">or drag and drop</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Details -->
+                <div class="bg-white rounded-lg shadow-sm p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-calendar-alt text-blue-600 mr-3"></i>
+                        Event Details
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Event Type -->
+                        <div>
+                            <label for="event-type" class="block text-sm font-medium text-gray-700 mb-2">
+                                Event Type *
+                            </label>
+                            <select id="event-type" name="event-type" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select event type</option>
+                                <option value="workshop">Workshop</option>
+                                <option value="masterclass">Masterclass</option>
+                                <option value="competition">Competition</option>
+                                <option value="festival">Food Festival</option>
+                                <option value="tasting">Tasting Event</option>
+                                <option value="demonstration">Cooking Demonstration</option>
+                                <option value="networking">Networking Event</option>
+                                <option value="charity">Charity Event</option>
+                            </select>
+                        </div>
+
+                        <!-- Cuisine Type -->
+                        <div>
+                            <label for="cuisine-type" class="block text-sm font-medium text-gray-700 mb-2">
+                                Cuisine Type *
+                            </label>
+                            <select id="cuisine-type" name="cuisine-type" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select cuisine type</option>
+                                <option value="italian">Italian</option>
+                                <option value="french">French</option>
+                                <option value="asian">Asian</option>
+                                <option value="mexican">Mexican</option>
+                                <option value="indian">Indian</option>
+                                <option value="mediterranean">Mediterranean</option>
+                                <option value="american">American</option>
+                                <option value="fusion">Fusion</option>
+                                <option value="international">International</option>
+                            </select>
+                        </div>
+
+                        <!-- Event Date -->
+                        <div class="md:col-span-2">
+                            <label for="event-start-date" class="block text-sm font-medium text-gray-700 mb-2">
+                                Event Date *
+                            </label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label for="event-start-date" class="sr-only">Start date</label>
+                                    <input type="date" id="event-start-date" name="event-start-date" required title="Start date"
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label for="event-end-date" class="sr-only">End date</label>
+                                    <input type="date" id="event-end-date" name="event-end-date" required title="End date"
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Start date - End date (if single day, use same date for both)</p>
+                        </div>
+
+                        <!-- Event Time -->
+                        <div>
+                            <label for="start-time" class="block text-sm font-medium text-gray-700 mb-2">
+                                Event Time *
+                            </label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label for="start-time" class="sr-only">Start time</label>
+                                    <input type="time" id="start-time" name="start-time" required title="Start time"
+                                           class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label for="end-time" class="sr-only">End time</label>
+                                    <input type="time" id="end-time" name="end-time" required title="End time"
+                                           class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Start time - End time</p>
+                        </div>
+
+                        <!-- Max Participants -->
+                        <div>
+                            <label for="max-participants" class="block text-sm font-medium text-gray-700 mb-2">
+                                Maximum Participants *
+                            </label>
+                            <input type="number" id="max-participants" name="max-participants" min="1" max="200" required
+                                   placeholder="e.g., 15"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location & Pricing -->
+                <div class="bg-white rounded-lg shadow-sm p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-map-marker-alt text-blue-600 mr-3"></i>
+                        Location & Pricing
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Location -->
+                        <div class="md:col-span-2">
+                            <label for="event-location" class="block text-sm font-medium text-gray-700 mb-2">
+                                Location *
+                            </label>
+                            <input type="text" id="event-location" name="event-location" required
+                                   placeholder="e.g., FoodieCamp Kitchen Studio, 123 Main St, New York, NY 10001"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <!-- Price -->
+                        <div>
+                            <label for="price" class="block text-sm font-medium text-gray-700 mb-2">
+                                Price per Person ($) *
+                            </label>
+                            <input type="number" id="price" name="price" min="0" step="0.01" required
+                                   placeholder="e.g., 75.00"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Organizer Information -->
+                <div class="bg-white rounded-lg shadow-sm p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-user-tie text-blue-600 mr-3"></i>
+                        Organizer Information
+                    </h2>
+
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- Organizer Name -->
+                        <div>
+                            <label for="organizer-name" class="block text-sm font-medium text-gray-700 mb-2">
+                                Organizer *
+                            </label>
+                            <input type="text" id="organizer-name" name="organizer-name" required
+                                   placeholder="e.g., Chef Maria Rodriguez"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <!-- Organizer Bio -->
+                        <div>
+                            <label for="organizer-bio" class="block text-sm font-medium text-gray-700 mb-2">
+                                Organizer Bio *
+                            </label>
+                            <textarea id="organizer-bio" name="organizer-bio" rows="4" required
+                                      placeholder="Brief biography of the organizer, their specialties, achievements, and background..."
+                                      class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Content -->
+                <div class="bg-white rounded-lg shadow-sm p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-list-check text-blue-600 mr-3"></i>
+                        Event Content
+                    </h2>
+
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- What You'll Learn -->
+                        <div>
+                            <label for="learning-objectives" class="block text-sm font-medium text-gray-700 mb-2">
+                                What You'll Learn *
+                            </label>
+                            <textarea id="learning-objectives" name="learning-objectives" rows="4" required
+                                      placeholder="List what participants will learn during this event (one item per line)..."
+                                      class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+                            <p class="text-sm text-gray-500 mt-1">Enter each learning objective on a separate line</p>
+                        </div>
+
+                        <!-- What's Included -->
+                        <div>
+                            <label for="whats-included" class="block text-sm font-medium text-gray-700 mb-2">
+                                What's Included *
+                            </label>
+                            <textarea id="whats-included" name="whats-included" rows="4" required
+                                      placeholder="List what's included in the event (materials, refreshments, etc. - one item per line)..."
+                                      class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+                            <p class="text-sm text-gray-500 mt-1">Enter each included item on a separate line</p>
+                        </div>
+
+                        <!-- Requirements -->
+                        <div>
+                            <label for="event-requirements" class="block text-sm font-medium text-gray-700 mb-2">
+                                Requirements *
+                            </label>
+                            <textarea id="event-requirements" name="event-requirements" rows="4" required
+                                      placeholder="List any requirements or things participants should know (one item per line)..."
+                                      class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+                            <p class="text-sm text-gray-500 mt-1">Enter each requirement on a separate line</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="bg-white rounded-lg shadow-sm p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-phone text-blue-600 mr-3"></i>
+                        Contact Information
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Contact Name -->
+                        <div>
+                            <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-2">
+                                Contact *
+                            </label>
+                            <input type="text" id="contact-name" name="contact-name" required
+                                   placeholder="e.g., John Smith"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <!-- Contact Email -->
+                        <div>
+                            <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-2">
+                                Contact Email *
+                            </label>
+                            <input type="email" id="contact-email" name="contact-email" required
+                                   placeholder="e.g., john@example.com"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+
+                        <!-- Contact Phone -->
+                        <div>
+                            <label for="contact-phone" class="block text-sm font-medium text-gray-700 mb-2">
+                                Contact Phone
+                            </label>
+                            <input type="tel" id="contact-phone" name="contact-phone"
+                                   placeholder="e.g., (555) 123-4567"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="bg-white rounded-lg shadow-sm p-8">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button type="button" onclick="window.history.back()"
+                                class="px-8 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition font-medium">
+                            Cancel
+                        </button>
+                        <button type="submit"
+                                class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium">
+                            <i class="fas fa-calendar-plus mr-2"></i>
+                            Post Event
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 FoodieCamp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Handle window resize for mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            }
+        });
+
+        // Form validation and submission
+        document.getElementById('post-event-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic form validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+            
+            if (isValid) {
+                // Show success message (in a real app, this would submit to a server)
+                alert('Event posted successfully! Your event will be reviewed and published within 24 hours.');
+                window.location.href = 'events.html';
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        // Auto-set end date to match start date for single-day events
+        document.getElementById('event-start-date').addEventListener('change', function() {
+            const endDateField = document.getElementById('event-end-date');
+            if (!endDateField.value) {
+                endDateField.value = this.value;
+            }
+        });
+    </script>
+</body>
+</html>
